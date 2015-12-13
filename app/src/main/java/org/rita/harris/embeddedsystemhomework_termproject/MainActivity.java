@@ -1,5 +1,6 @@
 package org.rita.harris.embeddedsystemhomework_termproject;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,10 +23,16 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     //<共同>變數
     private Toolbar toolbar;
+    private static Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,10 +42,16 @@ public class MainActivity extends AppCompatActivity
         Navigation_initialize();
         ActionBar_initialize();
     }
+    //<MainActivity> Context get
+    public static Context MainActivity_Context()
+    {
+        return mContext;
+    }
             //<共同> 初始化
     public void Common_initialize()
     {
         setContentView(R.layout.activity_main);
+        mContext = getApplicationContext();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -178,10 +192,7 @@ public class MainActivity extends AppCompatActivity
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
+        //回傳一個新的入口為了這個fragment 給他一個section 數字
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -190,18 +201,34 @@ public class MainActivity extends AppCompatActivity
             return fragment;
         }
 
-        public PlaceholderFragment() {
-        }
+        public PlaceholderFragment() {}
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-
+            RainFall_CatchData( rootView);
             return rootView;
         }
+    }
+        // <RainFall> 去呼叫抓取雨量的資料
+    public static void RainFall_CatchData(View rootView)
+    {
+        Map<String, String> descript = new HashMap<String, String>();
+        String link = null;
+        TextView tv;
+        RainFall_WebDataParse parse = new RainFall_WebDataParse();
+        try {
+            descript = parse.Showinfo();
+        }
+        catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            Log.v("sss","ssopkok");
+        }
+        link = descript.get("link");
+        tv = (TextView) rootView.findViewById(R.id.section_label);
+        tv.setText(link);
     }
 }
 
