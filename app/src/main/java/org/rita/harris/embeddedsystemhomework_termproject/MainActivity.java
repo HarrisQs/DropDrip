@@ -21,12 +21,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -217,8 +222,8 @@ public class MainActivity extends AppCompatActivity
             // <RainFall> 去呼叫抓取雨量的資料
     public static void RainFall_CatchData(View rootView)
     {
-        Map<String, String> descript = new HashMap<String, String>();
-        String ShowAllData = "";
+        ArrayList<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
+        SimpleAdapter adapter;
         RainFall_WebDataParse parse = new RainFall_WebDataParse();
 
         try {
@@ -227,15 +232,11 @@ public class MainActivity extends AppCompatActivity
         catch (Exception e) {
             e.printStackTrace();
         }
-
-        Set<String> keys = descript.keySet();  // 得到全部的key
-        Iterator<String> iter = keys.iterator() ;
-        while(iter.hasNext()){
-            String Descript_Key = iter.next() ;
-            ShowAllData += "地區，觀測站 : "+Descript_Key +"\n  累積二十四小時雨量 : " +descript.get(Descript_Key) + "\n";
-        }
-        TextView tv = (TextView) rootView.findViewById(R.id.section_label);
-        tv.setText(ShowAllData);
+        Log.v("length == ",Integer.toString(descript.size()));
+        adapter = new SimpleAdapter(MainActivity_Context(), descript, android.R.layout.simple_list_item_2,
+                new String[] { "所在鄉鎮","觀測站","二十四小時累積雨量" }, new int[] { android.R.id.text1, android.R.id.text1,android.R.id.text2 } );
+        ListView Main_ListView= (ListView)rootView.findViewById(R.id.MainlistView);
+            Main_ListView.setAdapter(adapter);
     }
 }
 

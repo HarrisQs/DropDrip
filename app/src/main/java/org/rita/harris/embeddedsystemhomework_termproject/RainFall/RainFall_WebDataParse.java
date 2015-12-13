@@ -10,17 +10,20 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RainFall_WebDataParse {
 
-    Map<String, String> info = new HashMap<String, String>(); // 每個裡面都有一個 key 和一個 value ，而 key 是獨一無二的絕不重複，重複會覆蓋裡面原本的值
+
     Elements Place ;
     Elements Observatory;
 
-    public Map<String, String> Showinfo() throws Exception
+    public ArrayList<HashMap<String,String>> Showinfo() throws Exception
     {
+        ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
         Thread Subthread = new Thread(mutiThread);//開一個新的線程，去執行網路連線
         Subthread.start();//開始線程
         Thread.sleep(1000L);//因為網路連線需要時間，所以需要等去連線的網路線程回來
@@ -35,11 +38,15 @@ public class RainFall_WebDataParse {
          */
         for(int i = 0 ;i < 16; i++)
         {
+            HashMap<String, String> info = new HashMap<String, String>(); // 每個裡面都有一個 key 和一個 value ，而 key 是獨一無二的絕不重複，重複會覆蓋裡面原本的值
             RainFall_Place = Place.get(3+29*i).text();
             RainFall_Observatory = Observatory.get(i+1).text();
-            info.put(RainFall_Place+"，"+RainFall_Observatory, Place.get(29+29*i).text());
+            info.put("所在鄉鎮", RainFall_Place);
+            info.put("觀測站", RainFall_Observatory);
+            info.put("二十四小時累積雨量", Place.get(29+29*i).text());
+            list.add(info);//把每筆資料分成三部分，放到Arraylist裡面
         }
-        return info;
+        return list;
     }
 
     //用Runnable包起來子線程要做的事情 -- 網路連線
