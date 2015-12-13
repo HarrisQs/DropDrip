@@ -8,7 +8,8 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="430dp"
+        android:layout_height="425dp"
         android:id="@+id/MainlistView"
+        android:listSelector="@color/colorAccent"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

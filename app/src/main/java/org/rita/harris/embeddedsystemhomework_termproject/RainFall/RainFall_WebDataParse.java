@@ -12,14 +12,13 @@ import org.jsoup.select.Elements;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class RainFall_WebDataParse {
 
 
     Elements Place ;
     Elements Observatory;
+    String UpdateTime = "沒有資料!";
 
     public ArrayList<HashMap<String,String>> Showinfo() throws Exception
     {
@@ -47,7 +46,6 @@ public class RainFall_WebDataParse {
         }
         return list;
     }
-
     //用Runnable包起來子線程要做的事情 -- 網路連線
     private Runnable mutiThread = new Runnable(){
         public void run(){
@@ -56,6 +54,7 @@ public class RainFall_WebDataParse {
                 Document xmlDoc = Jsoup.parse(url, 3000);
                 Place = xmlDoc.select("td");//在網頁原始碼裡面，標籤是td的都會被抓出來
                 Observatory = xmlDoc.select("a");//在網頁原始碼裡面，標籤是a的都會被抓出來
+                UpdateTime = Place.get(2).text();//設置更新時間
             }
             catch (Exception e)
             {
@@ -63,4 +62,8 @@ public class RainFall_WebDataParse {
             }
         }
     };
+    public String getUpdateTime()
+    {
+        return UpdateTime;
+    }
 }

@@ -41,46 +41,36 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33221477">
-              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+            <state vertical-scroll-proportion="2.720848">
+              <caret line="256" column="61" selection-start-line="256" selection-start-column="61" selection-end-line="256" selection-end-column="61" />
               <folding>
+                <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#Common_initialize#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#2833#2891#0" expanded="false" />
+                <element signature="e#3057#3115#0" expanded="false" />
                 <element signature="method#Navigation_initialize#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#3760#3791#0" expanded="true" />
+                <element signature="e#3793#3825#0" expanded="true" />
                 <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#onNavigationItemSelected#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#ActionBar_initialize#0;class#MainActivity#0" expanded="false" />
                 <element signature="class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#getItem#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
                 <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#7575#7599#0" expanded="true" />
+                <element signature="e#7793#7817#0" expanded="true" />
+                <element signature="e#8790#9306#0" expanded="true" />
+                <element signature="e#9305#9306#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
+      <file leaf-file-name="RainFall_DetailDataWebSite.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/RainFall/RainFall_DetailDataWebSite.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="content_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -90,11 +80,12 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/RainFall/RainFall_WebDataParse.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <caret line="19" column="24" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1671#2177#0" expanded="true" />
-                <element signature="e#2176#2177#0" expanded="true" />
+                <element signature="method#Showinfo#0;class#RainFall_WebDataParse#0" expanded="false" />
+                <element signature="e#2262#2263#0" expanded="true" />
+                <element signature="e#2295#2296#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1568,10 +1559,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/RainFall/RainFall_WebDataParse.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/RainFall/RainFall_WebDataParse.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/RainFall/RainFall_DetailDataWebSite.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -1651,6 +1643,24 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EmbeddedSystemHomework_TermProject" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1682,6 +1692,46 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EmbeddedSystemHomework_TermProject" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="embeddedsystemhomework_termproject" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EmbeddedSystemHomework_TermProject" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="embeddedsystemhomework_termproject" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RainFall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1915,7 +1965,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1991,7 +2041,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2001,17 +2051,23 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#Common_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#2833#2891#0" expanded="false" />
+            <element signature="e#3057#3115#0" expanded="false" />
             <element signature="method#Navigation_initialize#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3760#3791#0" expanded="true" />
+            <element signature="e#3793#3825#0" expanded="true" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onNavigationItemSelected#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ActionBar_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#getItem#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
             <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7575#7599#0" expanded="true" />
+            <element signature="e#7793#7817#0" expanded="true" />
+            <element signature="e#8790#9306#0" expanded="true" />
+            <element signature="e#9305#9306#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2022,8 +2078,9 @@
           <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1671#2177#0" expanded="true" />
-            <element signature="e#2176#2177#0" expanded="true" />
+            <element signature="method#Showinfo#0;class#RainFall_WebDataParse#0" expanded="false" />
+            <element signature="e#2262#2263#0" expanded="true" />
+            <element signature="e#2295#2296#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2033,17 +2090,23 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
           <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#Common_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#2833#2891#0" expanded="false" />
+            <element signature="e#3057#3115#0" expanded="false" />
             <element signature="method#Navigation_initialize#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3760#3791#0" expanded="true" />
+            <element signature="e#3793#3825#0" expanded="true" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onNavigationItemSelected#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ActionBar_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#getItem#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
             <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7575#7599#0" expanded="true" />
+            <element signature="e#7793#7817#0" expanded="true" />
+            <element signature="e#8790#9306#0" expanded="true" />
+            <element signature="e#9305#9306#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2054,8 +2117,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1671#2177#0" expanded="true" />
-            <element signature="e#2176#2177#0" expanded="true" />
+            <element signature="method#Showinfo#0;class#RainFall_WebDataParse#0" expanded="false" />
+            <element signature="e#2262#2263#0" expanded="true" />
+            <element signature="e#2295#2296#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2065,17 +2129,23 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
           <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#Common_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#2833#2891#0" expanded="false" />
+            <element signature="e#3057#3115#0" expanded="false" />
             <element signature="method#Navigation_initialize#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3760#3791#0" expanded="true" />
+            <element signature="e#3793#3825#0" expanded="true" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onNavigationItemSelected#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ActionBar_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#getItem#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
             <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7575#7599#0" expanded="true" />
+            <element signature="e#7793#7817#0" expanded="true" />
+            <element signature="e#8790#9306#0" expanded="true" />
+            <element signature="e#9305#9306#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2086,8 +2156,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1671#2177#0" expanded="true" />
-            <element signature="e#2176#2177#0" expanded="true" />
+            <element signature="method#Showinfo#0;class#RainFall_WebDataParse#0" expanded="false" />
+            <element signature="e#2262#2263#0" expanded="true" />
+            <element signature="e#2295#2296#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2149,17 +2220,23 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="196" column="29" selection-start-line="196" selection-start-column="29" selection-end-line="196" selection-end-column="29" />
           <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#Common_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#2833#2891#0" expanded="false" />
+            <element signature="e#3057#3115#0" expanded="false" />
             <element signature="method#Navigation_initialize#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3760#3791#0" expanded="true" />
+            <element signature="e#3793#3825#0" expanded="true" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onNavigationItemSelected#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ActionBar_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#getItem#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
             <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7575#7599#0" expanded="true" />
+            <element signature="e#7793#7817#0" expanded="true" />
+            <element signature="e#8790#9306#0" expanded="true" />
+            <element signature="e#9305#9306#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2213,17 +2290,23 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="196" column="29" selection-start-line="196" selection-start-column="29" selection-end-line="196" selection-end-column="29" />
           <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#Common_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#2833#2891#0" expanded="false" />
+            <element signature="e#3057#3115#0" expanded="false" />
             <element signature="method#Navigation_initialize#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3760#3791#0" expanded="true" />
+            <element signature="e#3793#3825#0" expanded="true" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onNavigationItemSelected#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ActionBar_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#getItem#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
             <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7575#7599#0" expanded="true" />
+            <element signature="e#7793#7817#0" expanded="true" />
+            <element signature="e#8790#9306#0" expanded="true" />
+            <element signature="e#9305#9306#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2277,17 +2360,23 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="189" column="39" selection-start-line="189" selection-start-column="39" selection-end-line="189" selection-end-column="39" />
           <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#Common_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#2833#2891#0" expanded="false" />
+            <element signature="e#3057#3115#0" expanded="false" />
             <element signature="method#Navigation_initialize#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3760#3791#0" expanded="true" />
+            <element signature="e#3793#3825#0" expanded="true" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onNavigationItemSelected#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ActionBar_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#getItem#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
             <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7575#7599#0" expanded="true" />
+            <element signature="e#7793#7817#0" expanded="true" />
+            <element signature="e#8790#9306#0" expanded="true" />
+            <element signature="e#9305#9306#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2342,17 +2431,23 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="184" column="74" selection-start-line="184" selection-start-column="74" selection-end-line="184" selection-end-column="74" />
           <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#Common_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#2833#2891#0" expanded="false" />
+            <element signature="e#3057#3115#0" expanded="false" />
             <element signature="method#Navigation_initialize#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3760#3791#0" expanded="true" />
+            <element signature="e#3793#3825#0" expanded="true" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onNavigationItemSelected#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ActionBar_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#getItem#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
             <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7575#7599#0" expanded="true" />
+            <element signature="e#7793#7817#0" expanded="true" />
+            <element signature="e#8790#9306#0" expanded="true" />
+            <element signature="e#9305#9306#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2444,25 +2539,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/RainFall/RainFall_WebDataParse.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1671#2177#0" expanded="true" />
-            <element signature="e#2176#2177#0" expanded="true" />
-          </folding>
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
+      <provider editor-type-id="android-designer">
         <state />
       </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5300353">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2473,27 +2564,54 @@
       </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/RainFall/RainFall_WebDataParse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Showinfo#0;class#RainFall_WebDataParse#0" expanded="false" />
+            <element signature="e#2262#2263#0" expanded="true" />
+            <element signature="e#2295#2296#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/RainFall/RainFall_DetailDataWebSite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/rita/harris/embeddedsystemhomework_termproject/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33221477">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.720848">
+          <caret line="256" column="61" selection-start-line="256" selection-start-column="61" selection-end-line="256" selection-end-column="61" />
           <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#Common_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#2833#2891#0" expanded="false" />
+            <element signature="e#3057#3115#0" expanded="false" />
             <element signature="method#Navigation_initialize#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3760#3791#0" expanded="true" />
+            <element signature="e#3793#3825#0" expanded="true" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onNavigationItemSelected#0;class#MainActivity#0" expanded="false" />
             <element signature="method#ActionBar_initialize#0;class#MainActivity#0" expanded="false" />
             <element signature="class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#getPageTitle#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#getItem#0;class#SectionsPagerAdapter#0;class#MainActivity#0" expanded="false" />
             <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#7575#7599#0" expanded="true" />
+            <element signature="e#7793#7817#0" expanded="true" />
+            <element signature="e#8790#9306#0" expanded="true" />
+            <element signature="e#9305#9306#0" expanded="true" />
           </folding>
         </state>
       </provider>

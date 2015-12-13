@@ -1,6 +1,8 @@
 package org.rita.harris.embeddedsystemhomework_termproject;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,11 +23,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
 
 import java.util.ArrayList;
@@ -49,11 +54,13 @@ public class MainActivity extends AppCompatActivity
         Navigation_initialize();
         ActionBar_initialize();
     }
-    //<MainActivity> Context get
+
+            //<MainActivity> Context get
     public static Context MainActivity_Context()
     {
         return mContext;
     }
+
             //<共同> 初始化
     public void Common_initialize()
     {
@@ -181,7 +188,7 @@ public class MainActivity extends AppCompatActivity
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "累積雨量";
                 case 1:
                     return "SECTION 2";
                 case 2:
@@ -214,7 +221,7 @@ public class MainActivity extends AppCompatActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            RainFall_CatchData( rootView);
+            RainFall_CatchData(rootView);
             return rootView;
         }
     }
@@ -223,20 +230,33 @@ public class MainActivity extends AppCompatActivity
     public static void RainFall_CatchData(View rootView)
     {
         List<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
+        final List<HashMap<String,String>> descript_Temp ;
         SimpleAdapter adapter;
         RainFall_WebDataParse parse = new RainFall_WebDataParse();
 
         try {
-            descript = parse.Showinfo();
+            descript = parse.Showinfo();// 去別的class 中抓取資料
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        Log.v("length == ",Integer.toString(descript.size()));
         adapter = new SimpleAdapter(MainActivity_Context(), descript, android.R.layout.simple_list_item_2,
-                new String[] { "所在鄉鎮&觀測站","二十四小時累積雨量" }, new int[] { android.R.id.text1,android.R.id.text2 } );
+                new String[] { "所在鄉鎮&觀測站","二十四小時累積雨量" }, new int[] { android.R.id.text1,android.R.id.text2 } );//將抓到的資料放list中
         ListView Main_ListView= (ListView)rootView.findViewById(R.id.MainlistView);
             Main_ListView.setAdapter(adapter);
+        Toast.makeText(MainActivity_Context(), parse.getUpdateTime() , Toast.LENGTH_LONG).show();//顯示更新時間
+
+        descript_Temp = descript; // 因為下面一定要用final
+        final RainFall_DetailDataWebSite ShowWebSite = new RainFall_DetailDataWebSite();
+        Main_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {//判斷USER點擊哪個Item，點後會跳到對應的網站
+                Uri uri=Uri.parse(ShowWebSite.get_WebSite_of_Some_Place(descript_Temp.get(position).toString()));
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                MainActivity_Context().startActivity(intent);
+            }
+        });
     }
 }
 
