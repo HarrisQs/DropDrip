@@ -26,7 +26,9 @@ import android.widget.TextView;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -211,24 +213,29 @@ public class MainActivity extends AppCompatActivity
             return rootView;
         }
     }
-        // <RainFall> 去呼叫抓取雨量的資料
+
+            // <RainFall> 去呼叫抓取雨量的資料
     public static void RainFall_CatchData(View rootView)
     {
         Map<String, String> descript = new HashMap<String, String>();
-        String link = null;
-        TextView tv;
+        String ShowAllData = "";
         RainFall_WebDataParse parse = new RainFall_WebDataParse();
+
         try {
             descript = parse.Showinfo();
         }
         catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-            Log.v("sss","ssopkok");
         }
-        link = descript.get("link");
-        tv = (TextView) rootView.findViewById(R.id.section_label);
-        tv.setText(link);
+
+        Set<String> keys = descript.keySet();  // 得到全部的key
+        Iterator<String> iter = keys.iterator() ;
+        while(iter.hasNext()){
+            String Descript_Key = iter.next() ;
+            ShowAllData += "地區，觀測站 : "+Descript_Key +"\n  累積二十四小時雨量 : " +descript.get(Descript_Key) + "\n";
+        }
+        TextView tv = (TextView) rootView.findViewById(R.id.section_label);
+        tv.setText(ShowAllData);
     }
 }
 
