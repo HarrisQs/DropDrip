@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity
             // <RainFall> 去呼叫抓取雨量的資料
     public static void RainFall_CatchData(View rootView)
     {
-        ArrayList<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
+        List<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
         SimpleAdapter adapter;
         RainFall_WebDataParse parse = new RainFall_WebDataParse();
 
@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity
         }
         Log.v("length == ",Integer.toString(descript.size()));
         adapter = new SimpleAdapter(MainActivity_Context(), descript, android.R.layout.simple_list_item_2,
-                new String[] { "所在鄉鎮","觀測站","二十四小時累積雨量" }, new int[] { android.R.id.text1, android.R.id.text1,android.R.id.text2 } );
+                new String[] { "所在鄉鎮&觀測站","二十四小時累積雨量" }, new int[] { android.R.id.text1,android.R.id.text2 } );
         ListView Main_ListView= (ListView)rootView.findViewById(R.id.MainlistView);
             Main_ListView.setAdapter(adapter);
     }

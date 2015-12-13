@@ -41,9 +41,8 @@ public class RainFall_WebDataParse {
             HashMap<String, String> info = new HashMap<String, String>(); // 每個裡面都有一個 key 和一個 value ，而 key 是獨一無二的絕不重複，重複會覆蓋裡面原本的值
             RainFall_Place = Place.get(3+29*i).text();
             RainFall_Observatory = Observatory.get(i+1).text();
-            info.put("所在鄉鎮", RainFall_Place);
-            info.put("觀測站", RainFall_Observatory);
-            info.put("二十四小時累積雨量", Place.get(29+29*i).text());
+            info.put("所在鄉鎮&觀測站", "所在鄉鎮 : " + RainFall_Place + "\n\t  觀測站 : " + RainFall_Observatory);
+            info.put("二十四小時累積雨量", "二十四小時累積雨量 : " + Place.get(29+29*i).text()+"  毫米");
             list.add(info);//把每筆資料分成三部分，放到Arraylist裡面
         }
         return list;
