@@ -2,6 +2,7 @@ package org.rita.harris.embeddedsystemhomework_termproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,6 +27,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -114,6 +117,17 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);//設置這個CLASS是navigation ITEM的監聽者
         navigationView.setNavigationItemSelectedListener(this);
+        final SubMenu subMenu = navigationView.getMenu().addSubMenu("Account Data");
+        if(IsChangeButtonText())//reference 有東西 所以要改成 ("登出") ("更改帳號")
+        {
+            subMenu.add("登出");
+            subMenu.add("更換帳號");
+        }
+        else // reference 沒有東西 所以要改成 ("登入") ("註冊")
+        {
+            subMenu.add("登入");
+            subMenu.add("註冊");
+        }
     }
 
     @Override // <Navigation> 處裡返回鍵的
@@ -134,17 +148,45 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
+        if (id == R.id.nav_camara)
+        {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        }
+        else if (id == R.id.nav_gallery)
+        {
 
-        } else if (id == R.id.nav_slideshow) {
+        }
+        else if (id == R.id.nav_slideshow)
+        {
 
-        } else if (id == R.id.nav_manage) {
+        }
+        else if (id == R.id.nav_manage)
+        {
 
-        } else if (id == R.id.nav_share) {
+        }
+        else if (id == R.id.nav_share)
+        {
 
-        } else if (id == R.id.nav_send) {
+        }
+        else if (id == R.id.nav_send)
+        {
+
+        }
+        else if (item.getTitle().toString().equals("登入"))//因為沒有ID所以只能比標題
+        {
+            Log.v("ddd","keoj3ih ");
+
+        }
+        else if (item.getTitle().toString().equals("註冊"))//因為沒有ID所以只能比標題
+        {
+
+        }
+        else if (item.getTitle().toString().equals("登出"))//因為沒有ID所以只能比標題
+        {
+
+        }
+        else if (item.getTitle().toString().equals("更換帳號"))//因為沒有ID所以只能比標題
+        {
 
         }
 
@@ -152,7 +194,18 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-             //<ActionBar> 初始化
+            //   <Navigation> 判斷reference裡面是否有存帳號資訊
+    private boolean IsChangeButtonText()
+    {
+        SharedPreferences settings = getSharedPreferences("AccountData", 0);
+        String Account = settings.getString("Account","");
+        String Password = settings.getString("Password","");
+        if(Account == "" && Password == "")//裡面是空的代表沒有帳號的資訊
+            return false;
+        else
+            return true;
+    }
+            //<ActionBar> 初始化
     public void ActionBar_initialize()
     {
         SectionsPagerAdapter mSectionsPagerAdapter =
