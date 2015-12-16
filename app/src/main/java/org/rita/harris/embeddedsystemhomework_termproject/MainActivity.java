@@ -26,11 +26,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
@@ -38,10 +35,7 @@ import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebD
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -174,20 +168,19 @@ public class MainActivity extends AppCompatActivity
         }
         else if (item.getTitle().toString().equals("登入"))//因為沒有ID所以只能比標題
         {
-            Log.v("ddd","keoj3ih ");
-
+            // TODO: 2015/12/16 Call LoginActivity
         }
         else if (item.getTitle().toString().equals("註冊"))//因為沒有ID所以只能比標題
         {
-
+            // TODO: 2015/12/16 Register New account
         }
         else if (item.getTitle().toString().equals("登出"))//因為沒有ID所以只能比標題
         {
-
+            // TODO: 2015/12/16 Clear Reference
         }
         else if (item.getTitle().toString().equals("更換帳號"))//因為沒有ID所以只能比標題
         {
-
+            // TODO: 2015/12/16  Clear Reference Add New Account go to LoginActivity
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
