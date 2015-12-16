@@ -12,7 +12,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SubMenu;
 import android.view.View;
@@ -30,6 +29,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import org.rita.harris.embeddedsystemhomework_termproject.AccountData.LoginActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
 
@@ -168,7 +168,10 @@ public class MainActivity extends AppCompatActivity
         }
         else if (item.getTitle().toString().equals("登入"))//因為沒有ID所以只能比標題
         {
-            // TODO: 2015/12/16 Call LoginActivity
+            // 2015/12/16 Call LoginActivity
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
         else if (item.getTitle().toString().equals("註冊"))//因為沒有ID所以只能比標題
         {

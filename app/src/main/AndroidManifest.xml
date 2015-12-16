@@ -27,9 +27,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".AccountData.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        <meta-data
+            android:name="com.parse.APPLICATION_ID"
+            android:value="yCCiarW09bZqPgcXjbYhXnDfNda1ZojlmZZrvRQx" />
+        <meta-data
+            android:name="com.parse.CLIENT_KEY"
+            android:value="Gbj50RKDgVOzUyw58u73HbfutSb46rv2lE9B4BN1" />
     </application>
 
 </manifest>

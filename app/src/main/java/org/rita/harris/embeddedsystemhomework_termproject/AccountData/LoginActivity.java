@@ -1,18 +1,10 @@
-package org.rita.harris.embeddedsystemhomework_termproject;
+package org.rita.harris.embeddedsystemhomework_termproject.AccountData;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 
 import android.os.Build;
@@ -29,14 +21,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.parse.Parse;
 
-import static android.Manifest.permission.READ_CONTACTS;
+import org.rita.harris.embeddedsystemhomework_termproject.R;
 
-/**
- * A login screen that offers login via email/password.
- */
 public class LoginActivity extends AppCompatActivity  {
 
     /**
@@ -74,7 +62,6 @@ public class LoginActivity extends AppCompatActivity  {
                 return false;
             }
         });
-
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -82,16 +69,15 @@ public class LoginActivity extends AppCompatActivity  {
                 attemptLogin();
             }
         });
-
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        //initialize Parse
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this);
     }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
+   //先進行輸入一個判斷
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
@@ -132,13 +118,9 @@ public class LoginActivity extends AppCompatActivity  {
             cancel = true;
         }
 
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
+        if (cancel) {//沒有通過前端的判斷
             focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
+        } else {//通過了要去後台進行真的認證
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
@@ -157,6 +139,7 @@ public class LoginActivity extends AppCompatActivity  {
 
     /**
      * Shows the progress UI and hides the login form.
+     * Show 出進度狀態
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
@@ -192,13 +175,12 @@ public class LoginActivity extends AppCompatActivity  {
     }
 
     /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
+     * 後來的判斷. todo 查查 AsyncTask<Void, Void, Boolean> 用途
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
-        private final String mPassword;
+        private final String mEmail;//存輸入的email
+        private final String mPassword;//存輸入的Password
 
         UserLoginTask(String email, String password) {
             mEmail = email;
