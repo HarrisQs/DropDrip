@@ -1,0 +1,11 @@
+AsyncTask類別的方法說明
+    doInBackground方法
+    這是一定必須覆寫的方法，把會花時間執行的內容放在這裡，例如這裡的getData()會是一個需要花時間執行的方法，我們就把它放到背景去執行。這裡我簡單用Thread.sleep(3000)，讓它「睡」3秒鐘，模擬這部份的內容花了3秒才做完。
+    *重要：這裡不能和UI有任何互動。
+    onPostExecute方法
+    當doInBackground方法中的程式執行完畢後，就會執行這個方法。通常是用來把取得的資料送給UI來顯示。
+    在doInBackground方法中是不能和任何UI元件互動的，只能在背景執行完畢後在這裡把資料送給UI。
+    onProgressUpdate方法
+    這個方法會取得一個數值，可以用來計算目前執行的進度，通常用來改變進度列(ProgressBar)的顯示。
+    onPreExecute方法
+    在背景執行之前要做什麼事都是寫在這裡

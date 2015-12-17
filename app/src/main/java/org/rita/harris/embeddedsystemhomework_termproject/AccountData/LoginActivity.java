@@ -3,37 +3,37 @@ package org.rita.harris.embeddedsystemhomework_termproject.AccountData;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.parse.LogInCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.rita.harris.embeddedsystemhomework_termproject.R;
+
+import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity  {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity  {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +72,11 @@ public class LoginActivity extends AppCompatActivity  {
         });
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        mContext = this;
+        Parse.enableLocalDatastore(mContext);
+        Parse.initialize(mContext);
 
-        //initialize Parse
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this);
     }
-
    //先進行輸入一個判斷
     private void attemptLogin() {
         if (mAuthTask != null) {
@@ -128,24 +128,21 @@ public class LoginActivity extends AppCompatActivity  {
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
+        // Replace this with your own logic
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
+        // Replace this with your own logic
         return (password.length() > 4 || password.length() ==0);
     }
 
     /**
-     * Shows the progress UI and hides the login form.
      * Show 出進度狀態
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
@@ -175,54 +172,68 @@ public class LoginActivity extends AppCompatActivity  {
     }
 
     /**
-     * 後來的判斷. todo 查查 AsyncTask<Void, Void, Boolean> 用途
+     * 後來的判斷.  查查 AsyncTask<Void, Void, Boolean> 用途
+     * 3個參數的意思分別是:
+     * Params，啟動任務執行的輸入參數
+     * Progress，後台任務執行的百分比
+     * Result，後台計算的結果類型
+     * 　AsyncTask能夠適當地、簡單地用於 UI線程。
+     * 這個類不需要操作線程(Thread)就可以完成後台操作將結果返回UI。
+     * 異步任務的定義是一個在後台線程上運行，其結果是在 UI線程上發佈的計算。 異步任務被定義成
+     * 三種泛型類型： arams，Progress和 Result；和
+     * 四個步驟： begin ,doInBackground，processProgress 和end
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;//存輸入的email
         private final String mPassword;//存輸入的Password
+        private boolean IsPass = false;//判斷有無通過
 
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
+            Log.v("Email",mEmail);
+            Log.v("Password",mPassword);
         }
 
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+        @Override //這裡是將會花時間的工作放到背景去處理
+        protected Boolean doInBackground(Void... params)
+        {
+        // CHECK the account here.
+            ParseUser.logInInBackground("harris32916@gmail.com", "1234", new LogInCallback() {
+                public void done(ParseUser user, ParseException e) {
+                    if (user != null) {
+                        Log.v("Log Success", user.toString());
+                        IsPass = true;
+                    } else {// Signup failed.
+                        Log.v("Log Error",e.toString());
+                        IsPass = false;
+                    }
+                }
+            });
 
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 return false;
             }
-        // TODO: CHECK the account here.
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            return true;
+            return IsPass;
         }
 
-        @Override
+        @Override//當doInBackground方法中的程式執行完畢後，就會執行這個方法
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
             if (success) {
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                mEmailView.setError("Something Wrong, Please try again! ");
+                mPasswordView.setError("Something Wrong, Please try again! ");
+                mEmailView.requestFocus();
             }
         }
 
-        @Override
+        @Override//取消的時候
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);

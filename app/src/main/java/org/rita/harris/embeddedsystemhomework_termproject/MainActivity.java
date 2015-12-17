@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SubMenu;
 import android.view.View;
@@ -28,6 +29,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import com.parse.ParseAnalytics;
 
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.LoginActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
@@ -216,7 +219,8 @@ public class MainActivity extends AppCompatActivity
             //<ActionBar> 處理分業的CLASS
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapter(FragmentManager fm)
+        {
             super(fm);
         }
 
@@ -249,17 +253,12 @@ public class MainActivity extends AppCompatActivity
 
             //<ActionBar> 處理內容的CLASS
     public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
         private static final String ARG_SECTION_NUMBER = "section_number";
-
         //回傳一個新的入口為了這個fragment 給他一個section 數字
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);//為了判斷現在是哪一個FRAGMENT
             fragment.setArguments(args);
             return fragment;
         }
@@ -270,7 +269,11 @@ public class MainActivity extends AppCompatActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            RainFall_CatchData(rootView);
+            switch(getArguments().getInt(ARG_SECTION_NUMBER, 0)) {
+                case 1:
+                    RainFall_CatchData(rootView);
+                    break;
+            }
             return rootView;
         }
     }
@@ -289,6 +292,7 @@ public class MainActivity extends AppCompatActivity
         catch (Exception e) {
             e.printStackTrace();
         }
+
         adapter = new SimpleAdapter(MainActivity_Context(), descript, android.R.layout.simple_list_item_2,
                 new String[] { "所在鄉鎮&觀測站","二十四小時累積雨量" }, new int[] { android.R.id.text1,android.R.id.text2 } );//將抓到的資料放list中
         ListView Main_ListView= (ListView)rootView.findViewById(R.id.MainlistView);
