@@ -36,6 +36,7 @@ import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
 
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.LoginActivity;
+import org.rita.harris.embeddedsystemhomework_termproject.AccountData.RegesterActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
 import org.rita.harris.embeddedsystemhomework_termproject.UserData.User_BasicData;
@@ -186,6 +187,9 @@ public class MainActivity extends AppCompatActivity
         else if (item.getTitle().toString().equals("註冊"))//因為沒有ID所以只能比標題
         {
             // TODO: 2015/12/16 Register New account
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this, RegesterActivity.class);
+            startActivity(intent);
         }
         else if (item.getTitle().toString().equals("登出"))//因為沒有ID所以只能比標題
         {
