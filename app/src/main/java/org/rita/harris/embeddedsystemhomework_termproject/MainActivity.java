@@ -1,5 +1,6 @@
 package org.rita.harris.embeddedsystemhomework_termproject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,13 +29,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
+import com.parse.ParseUser;
 
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.LoginActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
+import org.rita.harris.embeddedsystemhomework_termproject.UserData.User_BasicData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     //<共同>變數
     private Toolbar toolbar;
     private static Context mContext;
+    private User_BasicData mUser_BasicData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -78,6 +83,8 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+
+        mUser_BasicData = new User_BasicData ();
     }
 
     @Override // <共同>將MENU初始化的
@@ -115,7 +122,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);//設置這個CLASS是navigation ITEM的監聽者
         navigationView.setNavigationItemSelectedListener(this);
         final SubMenu subMenu = navigationView.getMenu().addSubMenu("Account Data");
-        if(IsChangeButtonText())//reference 有東西 所以要改成 ("登出") ("更改帳號")
+        if(mUser_BasicData.IsChangeButtonText())//reference 有東西 所以要改成 ("登出") ("更改帳號")
         {
             subMenu.add("登出");
             subMenu.add("更換帳號");
@@ -171,10 +178,10 @@ public class MainActivity extends AppCompatActivity
         }
         else if (item.getTitle().toString().equals("登入"))//因為沒有ID所以只能比標題
         {
-            // 2015/12/16 Call LoginActivity
             Intent intent = new Intent();
             intent.setClass(MainActivity.this, LoginActivity.class);
             startActivity(intent);
+            // TODO: 2015/12/17 Set NickName for Log in successful user
         }
         else if (item.getTitle().toString().equals("註冊"))//因為沒有ID所以只能比標題
         {
@@ -192,17 +199,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-            //   <Navigation> 判斷reference裡面是否有存帳號資訊
-    private boolean IsChangeButtonText()
-    {
-        SharedPreferences settings = getSharedPreferences("AccountData", 0);
-        String Account = settings.getString("Account","");
-        String Password = settings.getString("Password","");
-        if(Account == "" && Password == "")//裡面是空的代表沒有帳號的資訊
-            return false;
-        else
-            return true;
     }
             //<ActionBar> 初始化
     public void ActionBar_initialize()

@@ -3,7 +3,9 @@ package org.rita.harris.embeddedsystemhomework_termproject.AccountData;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.AsyncTask;
@@ -26,17 +28,14 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+import org.rita.harris.embeddedsystemhomework_termproject.MainActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.R;
+import org.rita.harris.embeddedsystemhomework_termproject.UserData.User_BasicData;
 
 import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity  {
 
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
     private UserLoginTask mAuthTask = null;
 
     // UI references.
@@ -44,7 +43,6 @@ public class LoginActivity extends AppCompatActivity  {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +70,6 @@ public class LoginActivity extends AppCompatActivity  {
         });
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-        mContext = this;
-        Parse.enableLocalDatastore(mContext);
-        Parse.initialize(mContext);
-
     }
    //先進行輸入一個判斷
     private void attemptLogin() {
@@ -192,21 +186,17 @@ public class LoginActivity extends AppCompatActivity  {
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
-            Log.v("Email",mEmail);
-            Log.v("Password",mPassword);
         }
 
         @Override //這裡是將會花時間的工作放到背景去處理
         protected Boolean doInBackground(Void... params)
         {
         // CHECK the account here.
-            ParseUser.logInInBackground("harris32916@gmail.com", "1234", new LogInCallback() {
+            ParseUser.logInInBackground(mEmail, mPassword, new LogInCallback() {
                 public void done(ParseUser user, ParseException e) {
                     if (user != null) {
-                        Log.v("Log Success", user.toString());
                         IsPass = true;
                     } else {// Signup failed.
-                        Log.v("Log Error",e.toString());
                         IsPass = false;
                     }
                 }
@@ -224,7 +214,12 @@ public class LoginActivity extends AppCompatActivity  {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
+            User_BasicData LoginUser_BasicData = new User_BasicData();
+
             if (success) {
+                LoginUser_BasicData.setNickName(ParseUser.getCurrentUser().getString("NickName"));
+                LoginUser_BasicData.setAccount(mEmail);
+                LoginUser_BasicData.setPassword(mPassword);
                 finish();
             } else {
                 mEmailView.setError("Something Wrong, Please try again! ");
