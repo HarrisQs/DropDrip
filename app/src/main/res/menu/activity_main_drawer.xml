@@ -12,12 +12,12 @@
             android:title="Tools" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Account">
         <menu>
-            <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
-                android:title="Share" />
-            <item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"
-                android:title="Send" />
+            <item android:id="@+id/Login_Logout" android:icon="@android:drawable/ic_menu_share"
+                android:title="Log In" />
+            <item android:id="@+id/New_Change_account" android:icon="@android:drawable/ic_menu_send"
+                android:title="New Account" />
         </menu>
     </item>
 

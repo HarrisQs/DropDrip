@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.AsyncTask;
@@ -223,6 +224,7 @@ public class LoginActivity extends AppCompatActivity  {
                 LoginUser_BasicData.setNickName(ParseUser.getCurrentUser().getString("NickName"));
                 LoginUser_BasicData.setAccount(mEmail);
                 LoginUser_BasicData.setPassword(mPassword);
+                SaveData();
                 Toast.makeText(mContext, "Log In Successfully", Toast.LENGTH_LONG).show();//顯示更新時間
                 finish();
             } else {
@@ -236,6 +238,14 @@ public class LoginActivity extends AppCompatActivity  {
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+        protected void SaveData()
+        {
+            SharedPreferences settings = MainActivity.MainActivity_Context().getSharedPreferences("AccountData", 0);
+            Log.v("jiji",mEmail);
+            settings.edit().putString("Account", mEmail);
+            settings.edit().putString("Password", mPassword);
+            settings.edit().putString("Nickname", ParseUser.getCurrentUser().getString("NickName"));
         }
     }
 }

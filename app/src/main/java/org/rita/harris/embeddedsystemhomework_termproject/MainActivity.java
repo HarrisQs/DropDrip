@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     private Toolbar toolbar;
     private static Context mContext;
     private User_BasicData mUser_BasicData;
-
+    private NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -120,19 +120,10 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);//設置這個CLASS是navigation ITEM的監聽者
+        navigationView = (NavigationView) findViewById(R.id.nav_view);//設置這個CLASS是navigation ITEM的監聽者
         navigationView.setNavigationItemSelectedListener(this);
-        final SubMenu subMenu = navigationView.getMenu().addSubMenu("Account Data");
-        if(mUser_BasicData.IsChangeButtonText())//reference 有東西 所以要改成 ("登出") ("更改帳號")
-        {
-            subMenu.add("登出");
-            subMenu.add("更換帳號");
-        }
-        else // reference 沒有東西 所以要改成 ("登入") ("註冊")
-        {
-            subMenu.add("登入");
-            subMenu.add("註冊");
-        }
+
+        ChangeItem();
     }
 
     @Override // <Navigation> 處裡返回鍵的
@@ -145,7 +136,23 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+    private void ChangeItem()
+    {
+        final Menu subMenu = navigationView.getMenu();
 
+        if(mUser_BasicData.IsChangeButtonText())//reference 有東西 所以要改成 ("登出") ("更改帳號")
+        {
+            subMenu.add("更換帳號");
+        }
+        else // reference 沒有東西 所以要改成 ("登入") ("註冊")
+        {
+
+            //subMenu.add("登入");
+            subMenu.add("註冊");
+            subMenu.findItem(R.id.Login_Logout).setTitle("555");// TODO: 2015/12/18  lET'S OKAY
+
+        }
+    }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override// <Navigation> Item監聽者
     public boolean onNavigationItemSelected(MenuItem item)
@@ -169,19 +176,12 @@ public class MainActivity extends AppCompatActivity
         {
 
         }
-        else if (id == R.id.nav_share)
-        {
-
-        }
-        else if (id == R.id.nav_send)
-        {
-
-        }
         else if (item.getTitle().toString().equals("登入"))//因為沒有ID所以只能比標題
         {
             Intent intent = new Intent();
             intent.setClass(MainActivity.this, LoginActivity.class);
             startActivity(intent);
+            ChangeItem();
             // TODO: 2015/12/17 Set NickName for Log in successful user
         }
         else if (item.getTitle().toString().equals("註冊"))//因為沒有ID所以只能比標題
