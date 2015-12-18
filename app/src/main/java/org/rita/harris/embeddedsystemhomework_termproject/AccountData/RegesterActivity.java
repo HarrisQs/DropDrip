@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseException;
+import com.parse.ParseSession;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -184,7 +185,8 @@ public class RegesterActivity extends AppCompatActivity  {
         private final String mEmail;
         private final String mPassword;
         private final String mNickName;
-        private boolean IsPass = false;//判斷有無通過
+        private boolean IsPass = true;//判斷有無通過
+        private boolean IsEnter = true;//判斷有無通過
 
         UserRegisterTask(String email, String password, String NickName) {
             mEmail = email;
@@ -200,7 +202,7 @@ public class RegesterActivity extends AppCompatActivity  {
             user.setUsername(mEmail);
             user.setPassword(mPassword);
             user.setEmail(mEmail);
-            user.put("NickName",mNickName);
+            user.put("NickName", mNickName);
             user.signUpInBackground(new SignUpCallback() {
                 public void done(ParseException e) {
                     if (e == null) {
@@ -217,20 +219,18 @@ public class RegesterActivity extends AppCompatActivity  {
                                 m_Authenticate = input.getText().toString();
                                 if(m_Authenticate == user.getObjectId())//成功
                                 {
-                                    IsPass = true;
+                                    IsEnter = false;
                                 }
-                                else//他驗證碼輸入錯誤，所以建立帳號失敗，TODO:刪除帳號
+                                else//他驗證碼輸入錯誤，所以建立帳號失敗
                                 {
-
-                                    IsPass = false;
+                                    IsEnter = false;
                                 }
                             }
                         });
                         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                               // TODO:刪除帳號
-                                IsPass = false;
+                                IsEnter = false;
                                 dialog.cancel();
                             }
                         });
@@ -244,7 +244,9 @@ public class RegesterActivity extends AppCompatActivity  {
             });
             try {
                 // Simulate network access.
-                Thread.sleep(3000);
+                Thread.sleep(4000);
+                while(IsEnter)
+                    Thread.sleep(2000);
             } catch (InterruptedException e) {
                 return false;
             }
@@ -258,7 +260,7 @@ public class RegesterActivity extends AppCompatActivity  {
             showProgress(false);
 
             if (success) {
-                Toast.makeText(mContext,"Registration Successfully", Toast.LENGTH_LONG).show();//顯示更新時間
+                Toast.makeText(mContext,"Registration Successfully", Toast.LENGTH_SHORT).show();//顯示更新時間 TODO:因為現在沒有信箱認證，所以要用嗎?
                 finish();
             } else {
                 mEmailView.setError("Try a new Email/username");

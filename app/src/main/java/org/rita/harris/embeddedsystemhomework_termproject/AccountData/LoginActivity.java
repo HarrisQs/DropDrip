@@ -198,7 +198,7 @@ public class LoginActivity extends AppCompatActivity  {
             ParseUser.logInInBackground(mEmail, mPassword, new LogInCallback() {
                 public void done(ParseUser user, ParseException e) {
                     if (user != null) {
-                        IsPass = true;
+                        IsPass =true;
                     } else {// Signup failed.
                         IsPass = false;
                     }
