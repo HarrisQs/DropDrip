@@ -207,7 +207,7 @@ public class LoginActivity extends AppCompatActivity  {
             });
 
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 return false;
             }
@@ -225,7 +225,7 @@ public class LoginActivity extends AppCompatActivity  {
                 LoginUser_BasicData.setAccount(mEmail);
                 LoginUser_BasicData.setPassword(mPassword);
                 SaveData();
-                Toast.makeText(mContext, "Log In Successfully", Toast.LENGTH_LONG).show();//顯示更新時間
+                Toast.makeText(mContext, "Log In Successfully", Toast.LENGTH_SHORT).show();//顯示更新時間
                 finish();
             } else {
                 mEmailView.setError("Something Wrong, Please try again! ");
@@ -241,11 +241,10 @@ public class LoginActivity extends AppCompatActivity  {
         }
         protected void SaveData()
         {
-            SharedPreferences settings = MainActivity.MainActivity_Context().getSharedPreferences("AccountData", 0);
-            Log.v("jiji",mEmail);
-            settings.edit().putString("Account", mEmail);
-            settings.edit().putString("Password", mPassword);
-            settings.edit().putString("Nickname", ParseUser.getCurrentUser().getString("NickName"));
+            SharedPreferences settings = getSharedPreferences("AccountData", 0);
+            settings.edit().putString("Account", mEmail).commit();
+            settings.edit().putString("Password", mPassword).commit();
+            settings.edit().putString("Nickname", ParseUser.getCurrentUser().getString("NickName")).commit();
         }
     }
 }

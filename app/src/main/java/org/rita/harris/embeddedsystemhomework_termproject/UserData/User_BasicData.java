@@ -1,6 +1,7 @@
 package org.rita.harris.embeddedsystemhomework_termproject.UserData;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import org.rita.harris.embeddedsystemhomework_termproject.MainActivity;
 
@@ -43,6 +44,9 @@ public class User_BasicData {
         String Account = settings.getString("Account", "");
         String Password = settings.getString("Password","");
         String Nickname = settings.getString("Nickname","");
+        Log.v("Mail",Account);
+        Log.v("Password",Password);
+        Log.v("Nickname",Nickname);
         if(Account == "" && Password == "")//裡面是空的代表沒有帳號的資訊
             return false;
         else {

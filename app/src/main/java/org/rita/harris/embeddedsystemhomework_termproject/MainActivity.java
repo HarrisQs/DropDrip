@@ -1,6 +1,5 @@
 package org.rita.harris.embeddedsystemhomework_termproject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +14,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -31,9 +29,6 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.parse.ParseAnalytics;
-import com.parse.ParseUser;
 
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.LoginActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.RegesterActivity;
@@ -59,6 +54,12 @@ public class MainActivity extends AppCompatActivity
         Common_initialize();
         Navigation_initialize();
         ActionBar_initialize();
+    }
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        ChangeItem();
     }
 
             //<MainActivity> Context get
@@ -122,8 +123,6 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);//設置這個CLASS是navigation ITEM的監聽者
         navigationView.setNavigationItemSelectedListener(this);
-
-        ChangeItem();
     }
 
     @Override // <Navigation> 處裡返回鍵的
@@ -139,18 +138,15 @@ public class MainActivity extends AppCompatActivity
     private void ChangeItem()
     {
         final Menu subMenu = navigationView.getMenu();
-
         if(mUser_BasicData.IsChangeButtonText())//reference 有東西 所以要改成 ("登出") ("更改帳號")
         {
-            subMenu.add("更換帳號");
+            subMenu.findItem(R.id.Login_Logout).setTitle("Log Out");
+            subMenu.findItem(R.id.New_Change_account).setTitle("Change Account");
         }
         else // reference 沒有東西 所以要改成 ("登入") ("註冊")
         {
-
-            //subMenu.add("登入");
-            subMenu.add("註冊");
-            subMenu.findItem(R.id.Login_Logout).setTitle("555");// TODO: 2015/12/18  lET'S OKAY
-
+            subMenu.findItem(R.id.Login_Logout).setTitle("Log In");
+            subMenu.findItem(R.id.New_Change_account).setTitle("New Account");
         }
     }
     @SuppressWarnings("StatementWithEmptyBody")
@@ -176,28 +172,38 @@ public class MainActivity extends AppCompatActivity
         {
 
         }
-        else if (item.getTitle().toString().equals("登入"))//因為沒有ID所以只能比標題
+        else if (item.getTitle().toString().equals("Log In"))//因為沒有ID所以只能比標題
         {
             Intent intent = new Intent();
             intent.setClass(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-            ChangeItem();
             // TODO: 2015/12/17 Set NickName for Log in successful user
         }
-        else if (item.getTitle().toString().equals("註冊"))//因為沒有ID所以只能比標題
+        else if (item.getTitle().toString().equals("New Account"))//因為沒有ID所以只能比標題
         {
-            // TODO: 2015/12/16 Register New account
+            //  2015/12/16 Register New account
             Intent intent = new Intent();
             intent.setClass(MainActivity.this, RegesterActivity.class);
             startActivity(intent);
         }
-        else if (item.getTitle().toString().equals("登出"))//因為沒有ID所以只能比標題
+        else if (item.getTitle().toString().equals("Log Out"))//因為沒有ID所以只能比標題
         {
             // TODO: 2015/12/16 Clear Reference
+            SharedPreferences settings = getSharedPreferences("AccountData", 0);
+            settings.edit().putString("Account", "").commit();
+            settings.edit().putString("Password", "").commit();
+            settings.edit().putString("Nickname", "").commit();
+            ChangeItem();
         }
-        else if (item.getTitle().toString().equals("更換帳號"))//因為沒有ID所以只能比標題
+        else if (item.getTitle().toString().equals("Change Account"))//因為沒有ID所以只能比標題
         {
-            // TODO: 2015/12/16  Clear Reference Add New Account go to LoginActivity
+            SharedPreferences settings = getSharedPreferences("AccountData", 0);
+            settings.edit().putString("Account", "").commit();
+            settings.edit().putString("Password", "").commit();
+            settings.edit().putString("Nickname", "").commit();
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
