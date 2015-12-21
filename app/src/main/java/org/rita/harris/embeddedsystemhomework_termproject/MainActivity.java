@@ -32,6 +32,8 @@ import android.widget.Toast;
 
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.LoginActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.RegesterActivity;
+import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.Map_CatchHistoryLocation;
+import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.MapsActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
 import org.rita.harris.embeddedsystemhomework_termproject.UserData.User_BasicData;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     private static Context mContext;
     private User_BasicData mUser_BasicData;
     private NavigationView navigationView;
+    private static Map_CatchHistoryLocation Mapparse;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity
         Common_initialize();
         Navigation_initialize();
         ActionBar_initialize();
+        Mapparse = new Map_CatchHistoryLocation();
     }
     @Override
     protected void onResume()
@@ -279,6 +283,9 @@ public class MainActivity extends AppCompatActivity
                 case 1:
                     RainFall_CatchData(rootView);
                     break;
+                case 2:
+                    Map_CatchData(rootView);
+                break;
             }
             return rootView;
         }
@@ -313,6 +320,37 @@ public class MainActivity extends AppCompatActivity
                 Uri uri=Uri.parse(ShowWebSite.get_WebSite_of_Some_Place(descript_Temp.get(position).toString()));
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                MainActivity_Context().startActivity(intent);
+            }
+        });
+    }
+
+    public static void Map_CatchData(View rootView)
+    {
+        List<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
+        SimpleAdapter adapter;
+
+        try {
+            descript = Mapparse.CatchData();// 去別的class 中抓取資料
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        adapter = new SimpleAdapter(MainActivity_Context(), descript, android.R.layout.simple_list_item_2,
+                new String[] { "型態&發起人","地點&聯絡方式" }, new int[] { android.R.id.text1,android.R.id.text2 } );//將抓到的資料放list中
+        ListView Main_ListView= (ListView)rootView.findViewById(R.id.MainlistView);
+        Main_ListView.setAdapter(adapter);
+
+        Main_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {//判斷USER點擊哪個Item，點後會跳到對應的網站
+                HashMap<String, String> Content = Mapparse.getDetail(position);
+                Toast.makeText(MainActivity_Context(), Content.get("Location"), Toast.LENGTH_LONG).show();//顯示更新時間
+                //TODO: 這裡要用MAP的形式，將內容給顯示出來 開一個新的activity
+                Intent intent = new Intent();
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setClass(MainActivity.MainActivity_Context(), MapsActivity.class);
                 MainActivity_Context().startActivity(intent);
             }
         });
