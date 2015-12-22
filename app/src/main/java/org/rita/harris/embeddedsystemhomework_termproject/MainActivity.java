@@ -27,7 +27,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.LoginActivity;
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     private static Context mContext;
     private User_BasicData mUser_BasicData;
     private NavigationView navigationView;
-    private static Map_CatchHistoryLocation Mapparse;
+    private static StarterApplication globalMap;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         Common_initialize();
         Navigation_initialize();
         ActionBar_initialize();
-        Mapparse = new Map_CatchHistoryLocation();
+        globalMap = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
     }
     @Override
     protected void onResume()
@@ -160,19 +159,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara)
+        if (id == R.id.New_Asylum_Point)
         {
             // Handle the camera action
         }
-        else if (id == R.id.nav_gallery)
-        {
-
-        }
-        else if (id == R.id.nav_slideshow)
-        {
-
-        }
-        else if (id == R.id.nav_manage)
+        else if (id == R.id.New_Emergency)
         {
 
         }
@@ -192,7 +183,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if (item.getTitle().toString().equals("Log Out"))//因為沒有ID所以只能比標題
         {
-            // TODO: 2015/12/16 Clear Reference
+            //  2015/12/16 Clear Reference
             SharedPreferences settings = getSharedPreferences("AccountData", 0);
             settings.edit().putString("Account", "").commit();
             settings.edit().putString("Password", "").commit();
@@ -253,7 +244,7 @@ public class MainActivity extends AppCompatActivity
                 case 0:
                     return "累積雨量";
                 case 1:
-                    return "SECTION 2";
+                    return "避難點&突發事件";
                 case 2:
                     return "SECTION 3";
             }
@@ -331,7 +322,7 @@ public class MainActivity extends AppCompatActivity
         SimpleAdapter adapter;
 
         try {
-            descript = Mapparse.CatchData();// 去別的class 中抓取資料
+            descript = globalMap.GlobalMapData.CatchData();// 去別的class 中抓取資料
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -345,12 +336,12 @@ public class MainActivity extends AppCompatActivity
         Main_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {//判斷USER點擊哪個Item，點後會跳到對應的網站
-                HashMap<String, String> Content = Mapparse.getDetail(position);
-                Toast.makeText(MainActivity_Context(), Content.get("Location"), Toast.LENGTH_LONG).show();//顯示更新時間
-                //TODO: 這裡要用MAP的形式，將內容給顯示出來 開一個新的activity
+                Bundle mBundle = new Bundle();
+                mBundle.putInt("Show", position);
                 Intent intent = new Intent();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setClass(MainActivity.MainActivity_Context(), MapsActivity.class);
+                intent.putExtra("Show",mBundle);
                 MainActivity_Context().startActivity(intent);
             }
         });
