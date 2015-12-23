@@ -24,5 +24,6 @@
     <string name="title_activity_regester">Resgist a new account</string>
     <string name="action_register">Register </string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_add__asylum__point">New Item</string>
 
 </resources>

@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.LoginActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.RegesterActivity;
+import org.rita.harris.embeddedsystemhomework_termproject.AddNewItem.Add_Asylum_PointActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.Map_CatchHistoryLocation;
 import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.MapsActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
@@ -46,8 +47,8 @@ public class MainActivity extends AppCompatActivity
     //<共同>變數
     private Toolbar toolbar;
     private static Context mContext;
-    private User_BasicData mUser_BasicData;
     private NavigationView navigationView;
+    private static StarterApplication mUser_BasicData;
     private static StarterApplication globalMap;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity
         Common_initialize();
         Navigation_initialize();
         ActionBar_initialize();
+        mUser_BasicData = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
         globalMap = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
     }
     @Override
@@ -88,8 +90,6 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
-        mUser_BasicData = new User_BasicData ();
     }
 
     @Override // <共同>將MENU初始化的
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
     private void ChangeItem()
     {
         final Menu subMenu = navigationView.getMenu();
-        if(mUser_BasicData.IsChangeButtonText())//reference 有東西 所以要改成 ("登出") ("更改帳號")
+        if(mUser_BasicData.mUser_BasicData.IsChangeButtonText())//reference 有東西 所以要改成 ("登出") ("更改帳號")
         {
             subMenu.findItem(R.id.Login_Logout).setTitle("Log Out");
             subMenu.findItem(R.id.New_Change_account).setTitle("Change Account");
@@ -159,13 +159,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.New_Asylum_Point)
+        if (id == R.id.New)
         {
-            // Handle the camera action
-        }
-        else if (id == R.id.New_Emergency)
-        {
-
+            if(mUser_BasicData.mUser_BasicData.IsChangeButtonText()) {//登入狀態
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, Add_Asylum_PointActivity.class);
+                startActivity(intent);
+            }
+            else
+                Toast.makeText(MainActivity_Context(), "Please Log In, Thank you. " , Toast.LENGTH_LONG).show();//沒有登入
         }
         else if (item.getTitle().toString().equals("Log In"))//因為沒有ID所以只能比標題
         {
@@ -227,8 +229,6 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
             return PlaceholderFragment.newInstance(position + 1);
         }
 
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity
                 case 0:
                     return "累積雨量";
                 case 1:
-                    return "避難點&突發事件";
+                    return "避難點&緊急事件";
                 case 2:
                     return "SECTION 3";
             }
@@ -276,6 +276,8 @@ public class MainActivity extends AppCompatActivity
                     break;
                 case 2:
                     Map_CatchData(rootView);
+                case 3:
+                    Founded_Rescue_team(rootView);
                 break;
             }
             return rootView;
@@ -317,6 +319,36 @@ public class MainActivity extends AppCompatActivity
     }
 
     public static void Map_CatchData(View rootView)
+    {
+        List<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
+        SimpleAdapter adapter;
+
+        try {
+            descript = globalMap.GlobalMapData.CatchData();// 去別的class 中抓取資料
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        adapter = new SimpleAdapter(MainActivity_Context(), descript, android.R.layout.simple_list_item_2,
+                new String[] { "型態&發起人","地點&聯絡方式" }, new int[] { android.R.id.text1,android.R.id.text2 } );//將抓到的資料放list中
+        ListView Main_ListView= (ListView)rootView.findViewById(R.id.MainlistView);
+        Main_ListView.setAdapter(adapter);
+
+        Main_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {//判斷USER點擊哪個Item，點後會跳到對應的網站
+                Bundle mBundle = new Bundle();
+                mBundle.putInt("Show", position);
+                Intent intent = new Intent();
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setClass(MainActivity.MainActivity_Context(), MapsActivity.class);
+                intent.putExtra("Show", mBundle);
+                MainActivity_Context().startActivity(intent);
+            }
+        });
+    }
+    public static void Founded_Rescue_team(View rootView)
     {
         List<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
         SimpleAdapter adapter;

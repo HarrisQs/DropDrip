@@ -65,6 +65,10 @@
             android:name=".GoogleMap.MapsActivity"
             android:label="@string/title_activity_maps" >
         </activity>
+        <activity
+            android:name=".AddNewItem.Add_Asylum_PointActivity"
+            android:label="@string/title_activity_add__asylum__point" >
+        </activity>
     </application>
 
 </manifest>
