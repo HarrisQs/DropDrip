@@ -4,6 +4,8 @@
         <menu>
             <item android:id="@+id/New" android:icon="@android:drawable/ic_menu_share"
                 android:title="Asylum Point" />
+            <item android:id="@+id/Ndew" android:icon="@android:drawable/ic_menu_share"
+                android:title="Asydddnt" />
         </menu>
     </item>
 

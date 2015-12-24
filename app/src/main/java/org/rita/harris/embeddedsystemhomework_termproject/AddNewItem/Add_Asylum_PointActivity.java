@@ -1,8 +1,14 @@
 package org.rita.harris.embeddedsystemhomework_termproject.AddNewItem;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.AsyncTask;
@@ -17,6 +23,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.parse.ParseObject;
 
 import org.rita.harris.embeddedsystemhomework_termproject.MainActivity;
@@ -24,7 +31,7 @@ import org.rita.harris.embeddedsystemhomework_termproject.R;
 import org.rita.harris.embeddedsystemhomework_termproject.StarterApplication;
 
 
-public class Add_Asylum_PointActivity extends AppCompatActivity  {
+public class Add_Asylum_PointActivity extends AppCompatActivity {
 
     private UserLoginTask mAuthTask = null;
 
@@ -37,6 +44,10 @@ public class Add_Asylum_PointActivity extends AppCompatActivity  {
     private static StarterApplication mUser_BasicData;
     private View mProgressView;
     private View mLoginFormView;
+
+    /*GPS*/
+    private LocationManager locationMgr;
+    private String provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +96,7 @@ public class Add_Asylum_PointActivity extends AppCompatActivity  {
         // Check for a valid password, if the user entered one.
         if (TextUtils.isEmpty(TrueName)) {
             mTrueNameView.setError(getString(R.string.error_field_required));
-            focusView =  mTrueNameView;
+            focusView = mTrueNameView;
             cancel = true;
         }
         if (TextUtils.isEmpty(CellPhone)) {
@@ -108,11 +119,11 @@ public class Add_Asylum_PointActivity extends AppCompatActivity  {
             focusView.requestFocus();
         } else {
             showProgress(true);
-            if(mAsylum_Point.isChecked())
+            if (mAsylum_Point.isChecked())
                 Type = "庇護點";
             else
                 Type = "緊急事件";
-            mAuthTask = new UserLoginTask(TrueName, CellPhone,Place, Description,Type);
+            mAuthTask = new UserLoginTask(TrueName, CellPhone, Place, Description, Type);
             mAuthTask.execute((Void) null);
         }
     }

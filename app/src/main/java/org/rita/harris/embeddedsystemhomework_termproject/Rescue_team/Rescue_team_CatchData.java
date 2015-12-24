@@ -22,36 +22,36 @@ public class Rescue_team_CatchData {
     {
         list = new ArrayList<HashMap<String,String>>();
         Detaillist = new ArrayList<HashMap<String,String>>();
-        query = ParseQuery.getQuery("Location");
-        query.whereEqualTo("Get", true);//GET 是為了能夠找到資料
+        query = ParseQuery.getQuery("RescueTeam");
+        query.whereGreaterThan("IsTitle",0);//GET 是為了能夠找到資料
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> scoreList, ParseException e) {
                 if (e == null) {
                     try {
-                        String Type ,  TrueName , Place , Contact , Description, Latitude, Longitude , UpdateAt;
+                        String Title, TrueName, Place, Cellphone, Description, UpdateAt;
+                        int IsTitle = 0;
                         for (int i = 0; i < scoreList.size(); i++) {
                             HashMap<String, String> info = new HashMap<String, String>(); // 每個裡面都有一個 key 和一個 value ，而 key 是獨一無二的絕不重複，重複會覆蓋裡面原本的值
                             HashMap<String, String> DetailData = new HashMap<String, String>();
-                            Type = query.get(scoreList.get(i).getObjectId().toString()).getString("Type");
+                            Title = query.get(scoreList.get(i).getObjectId().toString()).getString("Title");
                             TrueName = query.get(scoreList.get(i).getObjectId().toString()).getString("TrueName");
                             Place = query.get(scoreList.get(i).getObjectId().toString()).getString("Place");
-                            Contact = query.get(scoreList.get(i).getObjectId().toString()).getString("Contact");
+                            Cellphone = query.get(scoreList.get(i).getObjectId().toString()).getString("CellPhone");
+                            IsTitle = query.get(scoreList.get(i).getObjectId().toString()).getInt("IsTitle");
                             Description = query.get(scoreList.get(i).getObjectId().toString()).getString("Description");
-                            Latitude = query.get(scoreList.get(i).getObjectId().toString()).getString("Latitude");//緯度
-                            Longitude = query.get(scoreList.get(i).getObjectId().toString()).getString("Longitude");
                             UpdateAt = query.get(scoreList.get(i).getObjectId().toString()).getUpdatedAt().toString();
-                            info.put("型態&發起人", "總類 : " + Type + "\n發起人 : " + TrueName);
-                            info.put("地點&聯絡方式", "地點 : " + Place + "\t聯絡方式 : " + Contact);
-                            DetailData.put("Type",Type);
-                            DetailData.put("TrueName",TrueName);
-                            DetailData.put("Place",Place);
-                            DetailData.put("Contact",Contact);
-                            DetailData.put("Description",Description);
-                            DetailData.put("Latitude",Latitude);//緯度
-                            DetailData.put("Longitude",Longitude);//經度
-                            DetailData.put("UpdateAt",UpdateAt);//經度
+                            info.put("型態&發起人", "總類 : " + Title+ "\n發起人 : " + TrueName);
+                            info.put("地點&聯絡方式", "地點 : " + Place + "\t聯絡方式 : " + Cellphone);
+                            DetailData.put("Title", Title);
+                            DetailData.put("TrueName", TrueName);
+                            DetailData.put("Place", Place);
+                            DetailData.put("Cellphone", Cellphone);
+                            DetailData.put("Description", Description);
+                            DetailData.put("IsTitle", Integer.toString(IsTitle));
+                            DetailData.put("UpdateAt", UpdateAt);
                             list.add(info);//把每筆資料分成三部分，放到Arraylist裡面
                             Detaillist.add(DetailData);
+
                         }
                     } catch (ParseException e1) {
                         e1.printStackTrace();

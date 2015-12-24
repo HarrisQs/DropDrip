@@ -6,6 +6,7 @@ import android.util.Log;
 import com.parse.Parse;
 
 import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.Map_CatchHistoryLocation;
+import org.rita.harris.embeddedsystemhomework_termproject.Rescue_team.Rescue_team_CatchData;
 import org.rita.harris.embeddedsystemhomework_termproject.UserData.User_BasicData;
 
 /**
@@ -14,6 +15,7 @@ import org.rita.harris.embeddedsystemhomework_termproject.UserData.User_BasicDat
 public class StarterApplication extends Application {
     public Map_CatchHistoryLocation GlobalMapData;
     public User_BasicData mUser_BasicData;
+    public Rescue_team_CatchData mRescue_team_Data;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -21,5 +23,6 @@ public class StarterApplication extends Application {
         Parse.initialize(this);
         GlobalMapData = new Map_CatchHistoryLocation();
         mUser_BasicData = new User_BasicData ();
+        mRescue_team_Data = new Rescue_team_CatchData ();
     }
 }

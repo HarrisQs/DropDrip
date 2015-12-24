@@ -36,6 +36,7 @@ import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.Map_CatchHis
 import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.MapsActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
+import org.rita.harris.embeddedsystemhomework_termproject.Rescue_team.RescueTeamActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.UserData.User_BasicData;
 
 import java.util.ArrayList;
@@ -169,6 +170,13 @@ public class MainActivity extends AppCompatActivity
             else
                 Toast.makeText(MainActivity_Context(), "Please Log In, Thank you. " , Toast.LENGTH_LONG).show();//沒有登入
         }
+        else if (id == R.id.Ndew)
+        {
+            Intent intent = new Intent();
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setClass(this, GetLocation.class);
+            startActivity(intent);
+        }
         else if (item.getTitle().toString().equals("Log In"))//因為沒有ID所以只能比標題
         {
             Intent intent = new Intent();
@@ -246,7 +254,7 @@ public class MainActivity extends AppCompatActivity
                 case 1:
                     return "避難點&緊急事件";
                 case 2:
-                    return "SECTION 3";
+                    return "救難隊";
             }
             return null;
         }
@@ -276,6 +284,7 @@ public class MainActivity extends AppCompatActivity
                     break;
                 case 2:
                     Map_CatchData(rootView);
+                    break;
                 case 3:
                     Founded_Rescue_team(rootView);
                 break;
@@ -354,7 +363,7 @@ public class MainActivity extends AppCompatActivity
         SimpleAdapter adapter;
 
         try {
-            descript = globalMap.GlobalMapData.CatchData();// 去別的class 中抓取資料
+            descript = globalMap.mRescue_team_Data.CatchData();// 去別的class 中抓取資料
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -372,7 +381,7 @@ public class MainActivity extends AppCompatActivity
                 mBundle.putInt("Show", position);
                 Intent intent = new Intent();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setClass(MainActivity.MainActivity_Context(), MapsActivity.class);
+                intent.setClass(MainActivity.MainActivity_Context(), RescueTeamActivity.class);
                 intent.putExtra("Show",mBundle);
                 MainActivity_Context().startActivity(intent);
             }
