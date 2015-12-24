@@ -28,8 +28,7 @@ public class RescueTeamActivity extends AppCompatActivity {
     private int Match;
     private StarterApplication RescueData;
     private List<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
-    private ParseQuery<ParseObject> query;
-    private List<ParseObject> scoreList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,32 +63,18 @@ public class RescueTeamActivity extends AppCompatActivity {
                 + "\t聯絡方式 : " + RescueData.mRescue_team_Data.getDetail(Match).get("Cellphone"));
         info.put("地點&聯絡方式", "地點 : " + RescueData.mRescue_team_Data.getDetail(Match).get("Place")
                 + "\n發布時間 : " + RescueData.mRescue_team_Data.getDetail(Match).get("UpdateAt")
-                + "c" + "\n詳細敘述 : " + RescueData.mRescue_team_Data.getDetail(Match).get("Description"));
+                + "\n詳細敘述 : " + RescueData.mRescue_team_Data.getDetail(Match).get("Description"));
         descript.add(info);
-
-        query = ParseQuery.getQuery("ReplyRescueTeam");
-        query.whereEqualTo("WhichOne", RescueData.mRescue_team_Data.getDetail(Match).get("IsTitle"));//GET 是為了能夠找到資料
-        try {
-            scoreList = query.find();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String TrueName, Cellphone,UpdateAt;
-        int Match = 0;
-        boolean Participate = false;
-       // while (scoreList.size()==0)
-        Log.e("ddd",RescueData.mRescue_team_Data.getDetail(Match).get("IsTitle"));
-        Log.e("ddd",Integer.toString(scoreList.size()));
-        for (int i = 0; i < scoreList.size(); i++) {
-            HashMap<String, String> ifo = new HashMap<String, String>(); // 每個裡面都有一個 key 和一個 value ，而 key 是獨一無二的絕不重複，重複會覆蓋裡面原本的值
-            TrueName = scoreList.get(i).getString("TrueName");
-            Cellphone = scoreList.get(i).getString("CellPhone");
-            Match = scoreList.get(i).getInt("Match");
-            Participate = scoreList.get(i).getBoolean("IsParticipate");
-            UpdateAt = scoreList.get(i).getUpdatedAt().toString();
-            ifo.put("型態&發起人","參加人 : " + TrueName+ "\t聯絡方式 : " + Cellphone);
-            ifo.put("地點&聯絡方式", "是否參加 : " + "參加"+"\n發布時間 : "+UpdateAt);
-            descript.add(ifo);//把每筆資料分成三部分，放到Arraylist裡面
+        for(int i = 0 ;i < RescueData.mRescue_team_Data.getReplyDetaillist_Size(); i++)
+        {
+            info = new HashMap<String, String>();
+            if(RescueData.mRescue_team_Data.getReplyDetail(i).get("WhichOne").equals(RescueData.mRescue_team_Data.getDetail(Match).get("IsTitle"))) {
+                info.put("型態&發起人", "留言人 : " + RescueData.mRescue_team_Data.getReplyDetail(i).get("TrueName")
+                        + "\t聯絡方式 : " + RescueData.mRescue_team_Data.getReplyDetail(i).get("Cellphone"));
+                info.put("地點&聯絡方式", "是否參加 : " + RescueData.mRescue_team_Data.getReplyDetail(i).get("IsParticipate")
+                        + "\n發布時間 : " + RescueData.mRescue_team_Data.getReplyDetail(i).get("UpdateAt"));
+                descript.add(info);
+            }
         }
         SimpleAdapter adapter;
         adapter = new SimpleAdapter(MainActivity.MainActivity_Context(), descript, android.R.layout.simple_list_item_2,

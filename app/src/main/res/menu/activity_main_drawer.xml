@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Release the News">
+    <item android:title="新增項目">
         <menu>
             <item android:id="@+id/New" android:icon="@android:drawable/ic_menu_share"
-                android:title="Asylum Point" />
-            <item android:id="@+id/Ndew" android:icon="@android:drawable/ic_menu_share"
-                android:title="Asydddnt" />
+                android:title="新增庇護點、緊急事件" />
+            <item android:id="@+id/Rescue_Team" android:icon="@android:drawable/ic_menu_share"
+                android:title="成立救援隊" />
         </menu>
     </item>
 
-    <item android:title="Account">
+    <item android:title="帳號管理">
         <menu>
             <item android:id="@+id/Login_Logout" android:icon="@android:drawable/ic_menu_share"
-                android:title="Log In" />
+                android:title="登入" />
             <item android:id="@+id/New_Change_account" android:icon="@android:drawable/ic_menu_send"
-                android:title="New Account" />
+                android:title="註冊" />
         </menu>
     </item>
 

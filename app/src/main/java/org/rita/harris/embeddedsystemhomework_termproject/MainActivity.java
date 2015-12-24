@@ -1,5 +1,6 @@
 package org.rita.harris.embeddedsystemhomework_termproject;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,15 +30,15 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.parse.ParseException;
+
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.LoginActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.AccountData.RegesterActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.AddNewItem.Add_Asylum_PointActivity;
-import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.Map_CatchHistoryLocation;
 import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.MapsActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
 import org.rita.harris.embeddedsystemhomework_termproject.Rescue_team.RescueTeamActivity;
-import org.rita.harris.embeddedsystemhomework_termproject.UserData.User_BasicData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity
     private NavigationView navigationView;
     private static StarterApplication mUser_BasicData;
     private static StarterApplication globalMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         ActionBar_initialize();
         mUser_BasicData = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
         globalMap = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
+        setTitle("");
     }
     @Override
     protected void onResume()
@@ -79,15 +82,23 @@ public class MainActivity extends AppCompatActivity
     {
         setContentView(R.layout.activity_main);
         mContext = getApplicationContext();
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                try {
+                    globalMap.GlobalMapData.RefreshData();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    globalMap.mRescue_team_Data.RefreshData();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Snackbar.make(view, "更新了所有資料 ... ", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -144,13 +155,13 @@ public class MainActivity extends AppCompatActivity
         final Menu subMenu = navigationView.getMenu();
         if(mUser_BasicData.mUser_BasicData.IsChangeButtonText())//reference 有東西 所以要改成 ("登出") ("更改帳號")
         {
-            subMenu.findItem(R.id.Login_Logout).setTitle("Log Out");
-            subMenu.findItem(R.id.New_Change_account).setTitle("Change Account");
+            subMenu.findItem(R.id.Login_Logout).setTitle("登出");
+            subMenu.findItem(R.id.New_Change_account).setTitle("更換帳號");
         }
         else // reference 沒有東西 所以要改成 ("登入") ("註冊")
         {
-            subMenu.findItem(R.id.Login_Logout).setTitle("Log In");
-            subMenu.findItem(R.id.New_Change_account).setTitle("New Account");
+            subMenu.findItem(R.id.Login_Logout).setTitle("登入");
+            subMenu.findItem(R.id.New_Change_account).setTitle("註冊");
         }
     }
     @SuppressWarnings("StatementWithEmptyBody")
@@ -160,7 +171,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.New)
+        if (id == R.id.New)//庇護點
         {
             if(mUser_BasicData.mUser_BasicData.IsChangeButtonText()) {//登入狀態
                 Intent intent = new Intent();
@@ -170,28 +181,31 @@ public class MainActivity extends AppCompatActivity
             else
                 Toast.makeText(MainActivity_Context(), "Please Log In, Thank you. " , Toast.LENGTH_LONG).show();//沒有登入
         }
-        else if (id == R.id.Ndew)
+        else if (id == R.id.Rescue_Team)//救難隊
         {
-            Intent intent = new Intent();
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setClass(this, GetLocation.class);
-            startActivity(intent);
+            if(mUser_BasicData.mUser_BasicData.IsChangeButtonText()) {//登入狀態
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, Add_Asylum_PointActivity.class);
+                startActivity(intent);
+            }
+            else
+                Toast.makeText(MainActivity_Context(), "Please Log In, Thank you. " , Toast.LENGTH_LONG).show();//沒有登入
         }
-        else if (item.getTitle().toString().equals("Log In"))//因為沒有ID所以只能比標題
+        else if (item.getTitle().toString().equals("登入"))//因為沒有ID所以只能比標題
         {
             Intent intent = new Intent();
             intent.setClass(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             // TODO: 2015/12/17 Set NickName for Log in successful user
         }
-        else if (item.getTitle().toString().equals("New Account"))//因為沒有ID所以只能比標題
+        else if (item.getTitle().toString().equals("註冊"))//因為沒有ID所以只能比標題
         {
             //  2015/12/16 Register New account
             Intent intent = new Intent();
             intent.setClass(MainActivity.this, RegesterActivity.class);
             startActivity(intent);
         }
-        else if (item.getTitle().toString().equals("Log Out"))//因為沒有ID所以只能比標題
+        else if (item.getTitle().toString().equals("登出"))//因為沒有ID所以只能比標題
         {
             //  2015/12/16 Clear Reference
             SharedPreferences settings = getSharedPreferences("AccountData", 0);
@@ -200,7 +214,7 @@ public class MainActivity extends AppCompatActivity
             settings.edit().putString("Nickname", "").commit();
             ChangeItem();
         }
-        else if (item.getTitle().toString().equals("Change Account"))//因為沒有ID所以只能比標題
+        else if (item.getTitle().toString().equals("更換帳號"))//因為沒有ID所以只能比標題
         {
             SharedPreferences settings = getSharedPreferences("AccountData", 0);
             settings.edit().putString("Account", "").commit();
@@ -237,12 +251,11 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public Fragment getItem(int position) {
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position+1);
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 3;
         }
 
@@ -250,9 +263,9 @@ public class MainActivity extends AppCompatActivity
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "累積雨量";
-                case 1:
                     return "避難點&緊急事件";
+                case 1:
+                    return "累積雨量";
                 case 2:
                     return "救難隊";
             }
@@ -280,10 +293,10 @@ public class MainActivity extends AppCompatActivity
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             switch(getArguments().getInt(ARG_SECTION_NUMBER, 0)) {
                 case 1:
-                    RainFall_CatchData(rootView);
+                    Map_CatchData(rootView);
                     break;
                 case 2:
-                    Map_CatchData(rootView);
+                    RainFall_CatchData(rootView);
                     break;
                 case 3:
                     Founded_Rescue_team(rootView);
@@ -292,7 +305,6 @@ public class MainActivity extends AppCompatActivity
             return rootView;
         }
     }
-
             // <RainFall> 去呼叫抓取雨量的資料
     public static void RainFall_CatchData(View rootView)
     {
@@ -312,7 +324,7 @@ public class MainActivity extends AppCompatActivity
                 new String[] { "所在鄉鎮&觀測站","二十四小時累積雨量" }, new int[] { android.R.id.text1,android.R.id.text2 } );//將抓到的資料放list中
         ListView Main_ListView= (ListView)rootView.findViewById(R.id.MainlistView);
             Main_ListView.setAdapter(adapter);
-        Toast.makeText(MainActivity_Context(), parse.getUpdateTime() , Toast.LENGTH_LONG).show();//顯示更新時間
+        //TODO 更新時間 Toast.makeText(MainActivity_Context(), parse.getUpdateTime() , Toast.LENGTH_LONG).show();//顯示更新時間
 
         descript_Temp = descript; // 因為下面一定要用final
         final RainFall_DetailDataWebSite ShowWebSite = new RainFall_DetailDataWebSite();
@@ -326,7 +338,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
-
     public static void Map_CatchData(View rootView)
     {
         List<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
@@ -352,7 +363,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setClass(MainActivity.MainActivity_Context(), MapsActivity.class);
-                intent.putExtra("Show", mBundle);
+                intent.putExtras(mBundle);
                 MainActivity_Context().startActivity(intent);
             }
         });
@@ -382,7 +393,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setClass(MainActivity.MainActivity_Context(), RescueTeamActivity.class);
-                intent.putExtra("Show",mBundle);
+                intent.putExtras(mBundle);
                 MainActivity_Context().startActivity(intent);
             }
         });
