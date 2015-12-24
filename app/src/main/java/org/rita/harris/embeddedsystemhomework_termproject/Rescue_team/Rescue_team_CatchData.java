@@ -52,7 +52,7 @@ public class Rescue_team_CatchData {
                 IsTitle = scoreList.get(i).getInt("IsTitle");
                 Description = scoreList.get(i).getString("Description");
                 UpdateAt = scoreList.get(i).getUpdatedAt().toString();
-                info.put("型態&發起人", "總類 : " + Title + "\n發起人 : " + TrueName);
+                info.put("型態&發起人", "目的 : " + Title + "\n發起人 : " + TrueName);
                 info.put("地點&聯絡方式", "地點 : " + Place + "\t聯絡方式 : " + Cellphone);
                 DetailData.put("Title", Title);
                 DetailData.put("TrueName", TrueName);

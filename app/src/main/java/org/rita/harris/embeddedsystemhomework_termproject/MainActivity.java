@@ -38,6 +38,7 @@ import org.rita.harris.embeddedsystemhomework_termproject.AddNewItem.Add_Asylum_
 import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.MapsActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_DetailDataWebSite;
 import org.rita.harris.embeddedsystemhomework_termproject.RainFall.RainFall_WebDataParse;
+import org.rita.harris.embeddedsystemhomework_termproject.Rescue_team.Add_Rescue_Team;
 import org.rita.harris.embeddedsystemhomework_termproject.Rescue_team.RescueTeamActivity;
 
 import java.util.ArrayList;
@@ -130,11 +131,11 @@ public class MainActivity extends AppCompatActivity
             //<Navigation> 初始化
     public void Navigation_initialize()
     {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);//右上三條線 也是另一種觸發NAVIGATION的方法
+        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);//右上三條線 也是另一種觸發NAVIGATION的方法
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        toggle.syncState();*/
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);//設置這個CLASS是navigation ITEM的監聽者
         navigationView.setNavigationItemSelectedListener(this);
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity
         {
             if(mUser_BasicData.mUser_BasicData.IsChangeButtonText()) {//登入狀態
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, Add_Asylum_PointActivity.class);
+                intent.setClass(MainActivity.this, Add_Rescue_Team.class);
                 startActivity(intent);
             }
             else

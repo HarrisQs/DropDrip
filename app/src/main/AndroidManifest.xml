@@ -74,6 +74,10 @@
             android:label="@string/title_activity_rescue_team"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".Rescue_team.Add_Rescue_Team"
+            android:label="@string/title_activity_add__rescue__team" >
+        </activity>
     </application>
 
 </manifest>

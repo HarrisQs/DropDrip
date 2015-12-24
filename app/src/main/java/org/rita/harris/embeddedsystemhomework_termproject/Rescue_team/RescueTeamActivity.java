@@ -1,19 +1,19 @@
 package org.rita.harris.embeddedsystemhomework_termproject.Rescue_team;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.rita.harris.embeddedsystemhomework_termproject.MainActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.R;
@@ -40,8 +40,12 @@ public class RescueTeamActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AlertDialog  dialog = new AlertDialog.Builder(RescueTeamActivity.this)
+                        .setIcon(android.R.drawable.btn_star_big_on)
+                        .setTitle("您點的餐點有：")
+                        .setPositiveButton("確認", onclick)
+                        .setNegativeButton("離開",  onclick).create();
+                dialog.show();
             }
         });
         RescueData = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
@@ -50,6 +54,14 @@ public class RescueTeamActivity extends AppCompatActivity {
         setTitle(RescueData.mRescue_team_Data.getDetail(Match).get("Title"));
         List();
     }
+    DialogInterface.OnClickListener onclick = new DialogInterface.OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            Toast.makeText(getApplication(),"1233",Toast.LENGTH_LONG);
+        }
+    };
+
     private void List()
     {
         /**
@@ -65,10 +77,9 @@ public class RescueTeamActivity extends AppCompatActivity {
                 + "\n發布時間 : " + RescueData.mRescue_team_Data.getDetail(Match).get("UpdateAt")
                 + "\n詳細敘述 : " + RescueData.mRescue_team_Data.getDetail(Match).get("Description"));
         descript.add(info);
-        for(int i = 0 ;i < RescueData.mRescue_team_Data.getReplyDetaillist_Size(); i++)
-        {
+        for(int i = 0 ;i < RescueData.mRescue_team_Data.getReplyDetaillist_Size(); i++) {
             info = new HashMap<String, String>();
-            if(RescueData.mRescue_team_Data.getReplyDetail(i).get("WhichOne").equals(RescueData.mRescue_team_Data.getDetail(Match).get("IsTitle"))) {
+            if (RescueData.mRescue_team_Data.getReplyDetail(i).get("WhichOne").equals(RescueData.mRescue_team_Data.getDetail(Match).get("IsTitle"))) {
                 info.put("型態&發起人", "留言人 : " + RescueData.mRescue_team_Data.getReplyDetail(i).get("TrueName")
                         + "\t聯絡方式 : " + RescueData.mRescue_team_Data.getReplyDetail(i).get("Cellphone"));
                 info.put("地點&聯絡方式", "是否參加 : " + RescueData.mRescue_team_Data.getReplyDetail(i).get("IsParticipate")
