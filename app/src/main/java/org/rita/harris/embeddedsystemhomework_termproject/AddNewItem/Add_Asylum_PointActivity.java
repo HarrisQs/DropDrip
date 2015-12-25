@@ -267,8 +267,8 @@ public class Add_Asylum_PointActivity extends AppCompatActivity implements Locat
             latitude_txt = String.valueOf(latitude);
             LongitudeLatitude_txt.setText("Your Gps Location : ( " +longitude_txt+" , "+latitude_txt+" )");
         } else {
-            longitude_txt = "24";
-            latitude_txt = "121";
+            longitude_txt = "121";
+            latitude_txt = "24";
             Toast.makeText(this, "無法定位座標", Toast.LENGTH_LONG).show();
         }
     }

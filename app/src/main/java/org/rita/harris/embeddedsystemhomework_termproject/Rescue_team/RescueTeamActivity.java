@@ -13,7 +13,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
 
 import org.rita.harris.embeddedsystemhomework_termproject.MainActivity;
@@ -28,13 +30,15 @@ public class RescueTeamActivity extends AppCompatActivity {
 
     private int Match;
     private StarterApplication RescueData;
-    private List<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
+    private List<HashMap<String,String>> descript;
     private EditText Name;
     private EditText Cellphone;
+    private static StarterApplication mUser_BasicData;
 
     public RescueTeamActivity() {
         Cellphone = null;
         Name = null;
+        mUser_BasicData = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
     }
 
     @Override
@@ -48,18 +52,26 @@ public class RescueTeamActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LayoutInflater inflater = getLayoutInflater();
-                AlertDialog  dialog = new AlertDialog.Builder(RescueTeamActivity.this)
-                        .setIcon(android.R.drawable.btn_star_big_on)
-                        .setTitle("是否參加此次救難行動：")
-                        .setPositiveButton("參加", onclick)
-                        .setNeutralButton("取消", onclick)
-                        .setNegativeButton("不參加", onclick).create();
-                final View inputView = inflater.inflate(R.layout.customer_dialog, null);
-                dialog.setView(inputView);
-                Name = (EditText)inputView.findViewById(R.id.edit2Text);
-                Cellphone = (EditText)inputView.findViewById(R.id.editText);
-                dialog.show();
+                if(mUser_BasicData.mUser_BasicData.IsChangeButtonText()) {//登入狀態
+                    LayoutInflater inflater = getLayoutInflater();
+                    AlertDialog  dialog = new AlertDialog.Builder(RescueTeamActivity.this)
+                            .setIcon(android.R.drawable.btn_star_big_on)
+                            .setTitle("是否參加此次救難行動：")
+                            .setPositiveButton("參加", onclick)
+                            .setNeutralButton("取消", onclick)
+                            .setNegativeButton("不參加", onclick).create();
+                    final View inputView = inflater.inflate(R.layout.customer_dialog, null);
+                    dialog.setView(inputView);
+                    Name = (EditText)inputView.findViewById(R.id.edit2Text);
+                    Cellphone = (EditText)inputView.findViewById(R.id.editText);
+                    dialog.show();
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.MainActivity_Context(), "Please Log In, Thank you. ", Toast.LENGTH_LONG).show();//沒有登入
+
+                }
+
             }
         });
         RescueData = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
@@ -73,12 +85,7 @@ public class RescueTeamActivity extends AppCompatActivity {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case Dialog.BUTTON_NEGATIVE:
-                    ParseObject NEGATIVESaveObject = new ParseObject("Location");
-                    NEGATIVESaveObject.put("TrueName", Name.getText().toString());
-                    NEGATIVESaveObject.put("CellPhone", Cellphone.getText().toString());
-                    NEGATIVESaveObject.put("WhichOne",RescueData.mRescue_team_Data.getDetail(Match).get("IsTitle"));
-                    NEGATIVESaveObject.put("IsParticipate", "不參加");
-                    NEGATIVESaveObject.saveInBackground();
+                    dialog.dismiss();
                     break;
                 case Dialog.BUTTON_POSITIVE:
                     ParseObject POSITIVESaveObject = new ParseObject("ReplyRescureTeam");
@@ -87,6 +94,12 @@ public class RescueTeamActivity extends AppCompatActivity {
                     POSITIVESaveObject.put("WhichOne", RescueData.mRescue_team_Data.getDetail(Match).get("IsTitle"));
                     POSITIVESaveObject.put("IsParticipate", "參加");
                     POSITIVESaveObject.saveInBackground();
+                    try {
+                        mUser_BasicData.mRescue_team_Data.RefreshData();
+                        List();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case Dialog.BUTTON_NEUTRAL:
                     dialog.dismiss();
@@ -104,6 +117,7 @@ public class RescueTeamActivity extends AppCompatActivity {
          * 第二部分:其他人回覆參加或不參加的
          * 第三部分將上方收集到的資訊都寫入
          */
+        descript = new ArrayList<HashMap<String,String>>();
         HashMap<String, String> info = new HashMap<String, String>();
         info.put("型態&發起人", "發起人 : " + RescueData.mRescue_team_Data.getDetail(Match).get("TrueName")
                 + "\t聯絡方式 : " + RescueData.mRescue_team_Data.getDetail(Match).get("Cellphone"));

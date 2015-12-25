@@ -44,6 +44,7 @@ import org.rita.harris.embeddedsystemhomework_termproject.Rescue_team.RescueTeam
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity
     private NavigationView navigationView;
     private static StarterApplication mUser_BasicData;
     private static StarterApplication globalMap;
+    public static View rootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -68,6 +70,17 @@ public class MainActivity extends AppCompatActivity
     {
         super.onResume();
         ChangeItem();
+        try {
+            globalMap.GlobalMapData.RefreshData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            globalMap.mRescue_team_Data.RefreshData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        PlaceholderFragment.onxCreateView();
     }
 
             //<MainActivity> Context get
@@ -103,6 +116,8 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        Inflater inflater = ;
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override // <共同>將MENU初始化的
@@ -131,12 +146,11 @@ public class MainActivity extends AppCompatActivity
             //<Navigation> 初始化
     public void Navigation_initialize()
     {
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);//右上三條線 也是另一種觸發NAVIGATION的方法
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);//右上三條線 也是另一種觸發NAVIGATION的方法
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
-        toggle.syncState();*/
-
+        toggle.syncState();
         navigationView = (NavigationView) findViewById(R.id.nav_view);//設置這個CLASS是navigation ITEM的監聽者
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -291,7 +305,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            rootView = inflater.inflate(R.layout.fragment_main, container, false);
             switch(getArguments().getInt(ARG_SECTION_NUMBER, 0)) {
                 case 1:
                     Map_CatchData(rootView);
@@ -304,6 +318,12 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
             return rootView;
+        }
+        public static View onxCreateView() {
+            Map_CatchData(rootView);
+            RainFall_CatchData(rootView);
+            Founded_Rescue_team(rootView);
+          return rootView;
         }
     }
             // <RainFall> 去呼叫抓取雨量的資料
