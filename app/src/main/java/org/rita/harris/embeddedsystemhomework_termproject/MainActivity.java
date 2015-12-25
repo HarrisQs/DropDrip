@@ -61,8 +61,6 @@ public class MainActivity extends AppCompatActivity
         Common_initialize();
         Navigation_initialize();
         ActionBar_initialize();
-        mUser_BasicData = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
-        globalMap = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
         setTitle("");
     }
     @Override
@@ -85,6 +83,8 @@ public class MainActivity extends AppCompatActivity
         mContext = getApplicationContext();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mUser_BasicData = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
+        globalMap = (StarterApplication) MainActivity.MainActivity_Context().getApplicationContext();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,7 +4,6 @@ import android.app.Application;
 import android.util.Log;
 
 import com.parse.Parse;
-import com.parse.ParseException;
 
 import org.rita.harris.embeddedsystemhomework_termproject.GoogleMap.Map_CatchHistoryLocation;
 import org.rita.harris.embeddedsystemhomework_termproject.Rescue_team.Rescue_team_CatchData;
@@ -22,16 +21,8 @@ public class StarterApplication extends Application {
         super.onCreate();
         Parse.enableLocalDatastore(this);//Once the local datastore is enabled, you can store an object by pinning it.
         Parse.initialize(this);
-        try {
-            GlobalMapData = new Map_CatchHistoryLocation();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        GlobalMapData = new Map_CatchHistoryLocation();
         mUser_BasicData = new User_BasicData ();
-        try {
-            mRescue_team_Data = new Rescue_team_CatchData ();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        mRescue_team_Data = new Rescue_team_CatchData ();
     }
 }

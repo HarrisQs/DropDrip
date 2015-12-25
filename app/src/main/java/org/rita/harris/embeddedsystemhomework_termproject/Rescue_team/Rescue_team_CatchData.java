@@ -22,8 +22,7 @@ public class Rescue_team_CatchData {
     private ArrayList<HashMap<String,String>> ReplyDetaillist;
     private List<ParseObject> scoreList;
     private List<ParseObject> ReplyscoreList;
-    public Rescue_team_CatchData() throws ParseException {
-        RefreshData();
+    public Rescue_team_CatchData(){
     }
     public void RefreshData() throws ParseException {
         query = ParseQuery.getQuery("RescueTeam");

@@ -4,16 +4,17 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.parse.ParseObject;
 
 import org.rita.harris.embeddedsystemhomework_termproject.MainActivity;
 import org.rita.harris.embeddedsystemhomework_termproject.R;
@@ -28,6 +29,13 @@ public class RescueTeamActivity extends AppCompatActivity {
     private int Match;
     private StarterApplication RescueData;
     private List<HashMap<String,String>> descript = new ArrayList<HashMap<String,String>>();
+    private EditText Name;
+    private EditText Cellphone;
+
+    public RescueTeamActivity() {
+        Cellphone = null;
+        Name = null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +48,17 @@ public class RescueTeamActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LayoutInflater inflater = getLayoutInflater();
                 AlertDialog  dialog = new AlertDialog.Builder(RescueTeamActivity.this)
                         .setIcon(android.R.drawable.btn_star_big_on)
-                        .setTitle("您點的餐點有：")
-                        .setPositiveButton("確認", onclick)
-                        .setNegativeButton("離開",  onclick).create();
+                        .setTitle("是否參加此次救難行動：")
+                        .setPositiveButton("參加", onclick)
+                        .setNeutralButton("取消", onclick)
+                        .setNegativeButton("不參加", onclick).create();
+                final View inputView = inflater.inflate(R.layout.customer_dialog, null);
+                dialog.setView(inputView);
+                Name = (EditText)inputView.findViewById(R.id.edit2Text);
+                Cellphone = (EditText)inputView.findViewById(R.id.editText);
                 dialog.show();
             }
         });
@@ -55,10 +69,30 @@ public class RescueTeamActivity extends AppCompatActivity {
         List();
     }
     DialogInterface.OnClickListener onclick = new DialogInterface.OnClickListener() {
-
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            Toast.makeText(getApplication(),"1233",Toast.LENGTH_LONG);
+            switch (which) {
+                case Dialog.BUTTON_NEGATIVE:
+                    ParseObject NEGATIVESaveObject = new ParseObject("Location");
+                    NEGATIVESaveObject.put("TrueName", Name.getText().toString());
+                    NEGATIVESaveObject.put("CellPhone", Cellphone.getText().toString());
+                    NEGATIVESaveObject.put("WhichOne",RescueData.mRescue_team_Data.getDetail(Match).get("IsTitle"));
+                    NEGATIVESaveObject.put("IsParticipate", "不參加");
+                    NEGATIVESaveObject.saveInBackground();
+                    break;
+                case Dialog.BUTTON_POSITIVE:
+                    ParseObject POSITIVESaveObject = new ParseObject("ReplyRescureTeam");
+                    POSITIVESaveObject.put("TrueName", Name.getText().toString());
+                    POSITIVESaveObject.put("CellPhone", Cellphone.getText().toString());
+                    POSITIVESaveObject.put("WhichOne", RescueData.mRescue_team_Data.getDetail(Match).get("IsTitle"));
+                    POSITIVESaveObject.put("IsParticipate", "參加");
+                    POSITIVESaveObject.saveInBackground();
+                    break;
+                case Dialog.BUTTON_NEUTRAL:
+                    dialog.dismiss();
+                    break;
+            }
+
         }
     };
 

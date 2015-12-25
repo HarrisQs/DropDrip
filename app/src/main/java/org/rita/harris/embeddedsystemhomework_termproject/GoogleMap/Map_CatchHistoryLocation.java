@@ -19,8 +19,7 @@ public class Map_CatchHistoryLocation {
     private List<HashMap<String,String>> list;
     private ArrayList<HashMap<String,String>> Detaillist;
     private List<ParseObject> scoreList;
-    public Map_CatchHistoryLocation() throws ParseException {
-        RefreshData();
+    public Map_CatchHistoryLocation() {
     }
     public void RefreshData() throws ParseException {
         query = ParseQuery.getQuery("Location");
