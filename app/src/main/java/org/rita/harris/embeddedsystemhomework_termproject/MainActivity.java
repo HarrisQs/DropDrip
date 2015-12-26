@@ -44,7 +44,6 @@ import org.rita.harris.embeddedsystemhomework_termproject.Rescue_team.RescueTeam
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -55,6 +54,8 @@ public class MainActivity extends AppCompatActivity
     private static StarterApplication mUser_BasicData;
     private static StarterApplication globalMap;
     public static View rootView;
+    private boolean IN = false;
+    public static int who = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -70,17 +71,25 @@ public class MainActivity extends AppCompatActivity
     {
         super.onResume();
         ChangeItem();
-        try {
-            globalMap.GlobalMapData.RefreshData();
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if(IN)
+        {
+            try {
+                globalMap.GlobalMapData.RefreshData();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            try {
+                globalMap.mRescue_team_Data.RefreshData();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            PlaceholderFragment.onxCreateView();
         }
-        try {
-            globalMap.mRescue_team_Data.RefreshData();
-        } catch (ParseException e) {
-            e.printStackTrace();
+        else
+        {
+            IN = true;
         }
-        PlaceholderFragment.onxCreateView();
+
     }
 
             //<MainActivity> Context get
@@ -116,8 +125,8 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-        Inflater inflater = ;
-        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        LayoutInflater inflater = (LayoutInflater) mContext
+                .getSystemService(LAYOUT_INFLATER_SERVICE);
     }
 
     @Override // <共同>將MENU初始化的
@@ -192,6 +201,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, Add_Asylum_PointActivity.class);
                 startActivity(intent);
+                who = 1;
             }
             else
                 Toast.makeText(MainActivity_Context(), "Please Log In, Thank you. " , Toast.LENGTH_LONG).show();//沒有登入
@@ -202,6 +212,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, Add_Rescue_Team.class);
                 startActivity(intent);
+                who = 3;
             }
             else
                 Toast.makeText(MainActivity_Context(), "Please Log In, Thank you. " , Toast.LENGTH_LONG).show();//沒有登入
@@ -319,11 +330,21 @@ public class MainActivity extends AppCompatActivity
             }
             return rootView;
         }
-        public static View onxCreateView() {
-            Map_CatchData(rootView);
-            RainFall_CatchData(rootView);
-            Founded_Rescue_team(rootView);
-          return rootView;
+        public static void onxCreateView() {
+            Log.e("whi",Integer.toString(who));
+            switch (who) {
+                case 1:
+                    Founded_Rescue_team(rootView);
+                    //RainFall_CatchData(rootView);
+                    Map_CatchData(rootView);
+                    break;
+                case 3:
+
+                    Map_CatchData(rootView);
+                    //RainFall_CatchData(rootView);
+                    Founded_Rescue_team(rootView);
+                    break;
+            }
         }
     }
             // <RainFall> 去呼叫抓取雨量的資料

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ProgressBar;
 
 import org.rita.harris.embeddedsystemhomework_termproject.R;
@@ -20,17 +19,13 @@ public class LoadingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_loading);
-        Log.i(TAG, "onCreate().");
-        mContext = getApplicationContext();
+        setContentView(R.layout.aaaoading);
         spinbar = (ProgressBar) findViewById(progressBar1);
         spinbar.setVisibility(View.GONE);
+        mContext = getApplicationContext();
         new SplashScreenAsyncTask(this, spinbar).execute();
     }
-
     public static Context LoadingActivity_Context() {
         return mContext;
     }

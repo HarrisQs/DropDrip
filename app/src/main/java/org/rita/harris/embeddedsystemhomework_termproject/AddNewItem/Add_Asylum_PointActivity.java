@@ -211,14 +211,13 @@ public class Add_Asylum_PointActivity extends AppCompatActivity implements Locat
             SaveObject.put("Contact", mCellPhone);
             SaveObject.put("Place", mPlace);
             SaveObject.put("Description", mDescription);
-            SaveObject.put("GET", true);
             SaveObject.put("Latitude", mlatitude_txt);
             SaveObject.put("Longitude", mlongitude_txt);
             SaveObject.put("UserName", mUser_BasicData.mUser_BasicData.getAccount());
             SaveObject.saveInBackground();
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 return false;
             }
@@ -228,8 +227,8 @@ public class Add_Asylum_PointActivity extends AppCompatActivity implements Locat
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            showProgress(false);
             Toast.makeText(MainActivity.MainActivity_Context(), "Add Successfully! ", Toast.LENGTH_LONG).show();
+            showProgress(false);
             finish();
         }
 

@@ -38,11 +38,14 @@ public class SplashScreenAsyncTask extends AsyncTask<URL, Integer, String> {
     @Override
     protected String doInBackground(URL... params) {
         // TODO Auto-generated method stub
-        Thread Subthread = new Thread(mutiThread);//開一個新的線程，去執行網路連線
-        Subthread.start();
         try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
+            globalMap.GlobalMapData.RefreshData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            globalMap.mRescue_team_Data.RefreshData();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return doInReturn;
@@ -71,19 +74,6 @@ public class SplashScreenAsyncTask extends AsyncTask<URL, Integer, String> {
         Intent intent = new Intent();
         intent.setClass(mParentActivity, MainActivity.class);
         mParentActivity.startActivity(intent);
+        mParentActivity.finish();
     }
-    private Runnable mutiThread = new Runnable(){
-        public void run(){
-            try {
-                globalMap.GlobalMapData.RefreshData();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            try {
-                globalMap.mRescue_team_Data.RefreshData();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-    };
 }

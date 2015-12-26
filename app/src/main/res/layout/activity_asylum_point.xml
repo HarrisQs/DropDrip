@@ -29,7 +29,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Asylum Point"
+                    android:text="庇護點"
                     android:id="@+id/Asylum_Point"
                     android:layout_weight="0.29"
                     android:checked="true" />
@@ -37,7 +37,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Emergency"
+                    android:text="緊急事件"
                     android:id="@+id/Emergency"
                     android:layout_weight="0.25" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText android:id="@+id/TrueName" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="Your_Name"
+                    android:layout_height="wrap_content" android:hint="名字"
                     android:inputType="text" android:maxLines="1"
                     android:singleLine="true" />
 
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText android:id="@+id/CellPhone" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="CellPhone"
+                    android:layout_height="wrap_content" android:hint="聯絡方式"
                     android:inputType="phone|text" android:maxLines="1"
                     android:singleLine="true" />
 
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText android:id="@+id/Place" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="Place"
+                    android:layout_height="wrap_content" android:hint="地點"
                     android:inputType="text" android:maxLines="1"
                     android:singleLine="false" />
 
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText android:id="@+id/Description" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="Description"
+                    android:layout_height="wrap_content" android:hint="詳細描述"
                     android:inputType="text" android:maxLines="1"
                     android:singleLine="false" />
 
@@ -98,7 +98,7 @@
 
             <Button android:id="@+id/Add" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" android:text="Add"
+                android:layout_marginTop="16dp" android:text="新增"
                 android:textStyle="bold" />
 
         </LinearLayout>
