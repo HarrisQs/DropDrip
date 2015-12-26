@@ -70,7 +70,7 @@ public class SplashScreenAsyncTask extends AsyncTask<URL, Integer, String> {
         // TODO Auto-generated method stub
         super.onPostExecute(result);
         Log.i(TAG, "onPostExecute().");
-        spinTask.setVisibility(View.GONE);
+        //spinTask.setVisibility(View.GONE);
         Intent intent = new Intent();
         intent.setClass(mParentActivity, MainActivity.class);
         mParentActivity.startActivity(intent);
