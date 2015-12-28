@@ -5,6 +5,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/a55"
     tools:context="org.rita.harris.embeddedsystemhomework_termproject.Rescue_team.Add_Rescue_Team">
 
     <!-- Login progress -->
@@ -72,6 +73,7 @@
             <Button android:id="@+id/Add" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:layout_marginTop="16dp" android:text="新增"
+                android:background="@drawable/a777"
                 android:textStyle="bold" />
 
         </LinearLayout>

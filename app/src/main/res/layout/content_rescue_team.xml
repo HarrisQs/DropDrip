@@ -23,6 +23,7 @@
             android:layout_height="425dp"
             android:id="@+id/Mainlist"
             android:listSelector="@color/colorAccent"
+            android:background="@drawable/a154"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 

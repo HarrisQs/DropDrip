@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -11,7 +10,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/edit2Text"
         android:hint = "姓名"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:drawableTint="#954747" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
