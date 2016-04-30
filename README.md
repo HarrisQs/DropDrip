@@ -8,7 +8,8 @@ This app is a flood notification system, it can
  2. Establish asylum points
  3. Issue emergency 
  4. Founded rescue team
-## Code Need
+
+## Code Requirement
 
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
@@ -31,7 +32,7 @@ And install it to your smartphone.
 * [App start screen](http://bryceknowhow.blogspot.tw/2014/12/android-asynctaskprogressbarappsplashsc.html)
 * [Maps and Positioning](http://blog.tonycube.com/2013/06/androidmaps-and-positioning3.html)
 
-## Tests
+## Result
 
 Describe and show how to run the tests with code examples.
 
