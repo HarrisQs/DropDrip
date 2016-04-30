@@ -1,4 +1,4 @@
-# Drop Drip ![Icon](https://github.com/HarrisQs/DropDrip/blob/master/app/src/main/res/xxmipmap-hdpi/a03.png)
+# Drop Drip ![Icon](https://github.com/HarrisQs/DropDrip/blob/master/app/src/main/res/mipmap-xxhdpi/a03.png)
 
 ## Synopsis
 
