@@ -1,5 +1,5 @@
 # Drop Drip 
-![Icon](https://github.com/HarrisQs/DropDrip/blob/master/app/src/main/res/mipmap-xxhdpi/a03.png)
+![Icon](https://github.com/HarrisQs/DropDrip/blob/master/app/src/main/res/mipmap-hdpi/a03.png)
 
 ## Synopsis
 
