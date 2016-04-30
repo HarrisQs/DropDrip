@@ -1,11 +1,13 @@
-# EmbeddedSystemHomework_TermProject
-## due date 2015/12/31
+# Drop Drip
 
-# Project Name
 ## Synopsis
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
-
+This app is a flood notification system, it can
+ 
+ 1. Inform immediate rainfall within round the clock 
+ 2. Establish asylum points
+ 3. Issue emergency 
+ 4. Founded rescue team
 ## Code Need
 
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
@@ -20,7 +22,8 @@ Provide code examples and explanations of how to get the project.
 
 ## API Reference
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+* [How to send a E-mail in android](http://yarakambharathi.blogspot.tw/2012/06/send-e-mail-using-javamail-api-using.html) 
+* [How to catch web data with jsoup](http://xxs4129.pixnet.net/blog/post/165417214-android%E4%BD%BF%E7%94%A8jsoup%E6%8A%93%E5%8F%96%E7%B6%B2%E9%A0%81%E8%B3%87%E6%96%99)
 
 ## Tests
 
@@ -28,14 +31,14 @@ Describe and show how to run the tests with code examples.
 
 ## History
 
-TODO: Write history
-
-##FAQ
+* 2015/12/31 Full version
+* 2016/04/30 Update README
 
 ## Contributors
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+* [HarrisQs @ GitHub ](https://github.com/HarrisQs)
+* [Rita @ GitHub](https://github.com/rita20839)
 
 ## License
 
-A short snippet describing the license (MIT, Apache, etc.)
+Available under [the MIT license](https://mths.be/mit).
