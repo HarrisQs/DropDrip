@@ -10,14 +10,6 @@ This app is a flood notification system, it can
  3. Issue emergency 
  4. Founded rescue team
 
-## Code Requirement
-
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
-## Motivation
-
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
-
 ## Installation
 
 You can use `git clone git@github.com:HarrisQs/DropDrip.git` to clone this project, then compile it with android studio.
@@ -35,7 +27,7 @@ And install it to your smartphone.
 
 ## Result
 
-Describe and show how to run the tests with code examples.
+![Vedio](https://drive.google.com/file/d/0B-gdsyJfkfL8Yk9FcTV4LVJKX0E/view?usp=sharing)
 
 ## History
 
