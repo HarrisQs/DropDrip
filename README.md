@@ -18,12 +18,18 @@ A short description of the motivation behind the creation and maintenance of the
 
 ## Installation
 
-Provide code examples and explanations of how to get the project.
+You can use `git clone git@github.com:HarrisQs/DropDrip.git` to clone this project, then compile it with android studio.
+
+Then you can find `.apk` file in `DropDrip\app\build\outputs\apk` this path.
+
+And install it to your smartphone.
 
 ## API Reference
 
 * [How to send a E-mail in android](http://yarakambharathi.blogspot.tw/2012/06/send-e-mail-using-javamail-api-using.html) 
 * [How to catch web data with jsoup](http://xxs4129.pixnet.net/blog/post/165417214-android%E4%BD%BF%E7%94%A8jsoup%E6%8A%93%E5%8F%96%E7%B6%B2%E9%A0%81%E8%B3%87%E6%96%99)
+* [App start screen](http://bryceknowhow.blogspot.tw/2014/12/android-asynctaskprogressbarappsplashsc.html)
+* [Maps and Positioning](http://blog.tonycube.com/2013/06/androidmaps-and-positioning3.html)
 
 ## Tests
 
