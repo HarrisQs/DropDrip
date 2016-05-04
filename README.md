@@ -33,11 +33,6 @@ And install it to your smartphone.
 		
 		Picture.1 Can't connect with the website.
 
-<div style="text-align: center">
-<img src="https://github.com/HarrisQs/DropDrip/blob/master/Picture/啟動畫面.jpeg"/>
-</div>
-
-
 ## History
 
 * 2015/12/31 Full version
