@@ -29,9 +29,13 @@ And install it to your smartphone.
 
 [Demo Vedio](https://goo.gl/MkHsIa)
 
-<center>![Disconnect](https://github.com/HarrisQs/DropDrip/blob/master/Picture/啟動畫面.jpeg)</center>
+![Disconnect](https://github.com/HarrisQs/DropDrip/blob/master/Picture/啟動畫面.jpeg)
 		
 		Picture.1 Can't connect with the website.
+
+<div style="text-align: center">
+<img src="https://github.com/HarrisQs/DropDrip/blob/master/Picture/啟動畫面.jpeg"/>
+</div>
 
 
 ## History
