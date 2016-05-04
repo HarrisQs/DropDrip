@@ -27,7 +27,9 @@ And install it to your smartphone.
 
 ## Result
 
-![[Vedio])(https://github.com/HarrisQs/DropDrip/blob/master/Picture/13169967_1106135252740317_418735286_o.png.jpeg)](https://goo.gl/0r6uIv)
+![Vedio](https://github.com/HarrisQs/DropDrip/blob/master/Picture/13169967_1106135252740317_418735286_o.png.jpeg)
+
+[](https://goo.gl/0r6uIv)
 
 ## History
 
