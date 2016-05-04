@@ -12,7 +12,7 @@ This app is a flood notification system, it can
 
 ## Installation
 
-You can use `git clone git@github.com:HarrisQs/DropDrip.git` to clone this project, then compile it with android studio.
+You can use `git clone git@github.com:HarrisQs/DropDrip.git` to clone this project, then compile it with android studio 1.4.1.
 
 Then you can find `.apk` file in `DropDrip\app\build\outputs\apk` this path.
 
@@ -27,7 +27,7 @@ And install it to your smartphone.
 
 ## Result
 
-![Vedio](https://goo.gl/0r6uIv)
+
 
 ## History
 
