@@ -27,7 +27,7 @@ And install it to your smartphone.
 
 ## Result
 
-[Demo Vedio](https://drive.google.com/drive/u/0/my-drive)
+[Demo Vedio](https://goo.gl/MkHsIa)
 
 
 ## History
