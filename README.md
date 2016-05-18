@@ -3,7 +3,7 @@
 
 ## Synopsis
 
-This app is a flood notification system, it can
+This app is a Flood disaster alerts system, it can
  
  1. Inform immediate rainfall within round the clock 
  2. Establish asylum points
