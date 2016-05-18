@@ -32,7 +32,7 @@ This is a [Demo Vedio](https://goo.gl/MkHsIa) about this app.
 The following pictures are some screen when this app is running.
 
 
-   ![Start screen](![](https://github.com/HarrisQs/DropDrip/blob/master/Picture/起始畫面.png))
+   ![Start screen](https://github.com/HarrisQs/DropDrip/blob/master/Picture/起始畫面.png)
 		
 		Picture.1 Start screen
 ![Disconnect](https://github.com/HarrisQs/DropDrip/blob/master/Picture/二十四小時雨量.png)
