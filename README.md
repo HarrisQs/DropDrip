@@ -27,11 +27,24 @@ And install it to your smartphone.
 
 ## Result
 
-[Demo Vedio](https://goo.gl/MkHsIa)
+This is a [Demo Vedio](https://goo.gl/MkHsIa) about this app.
 
-![Disconnect](https://github.com/HarrisQs/DropDrip/blob/master/Picture/啟動畫面.jpeg)
+The following pictures are some screen when this app is running.
+
+![Start screen](https://github.com/HarrisQs/DropDrip/blob/master/Picture/啟動畫面.jpeg)
 		
-		Picture.1 Can't connect with the website.
+		Picture.1 Start screen
+![Disconnect](https://github.com/HarrisQs/DropDrip/blob/master/Picture/二十四小時雨量.jpeg)
+		
+		Picture.2 Twenty-four hours rainfall
+![Disconnect](https://github.com/HarrisQs/DropDrip/blob/master/Picture/救難隊.jpeg)
+
+
+		Picture.3 Rescue team
+
+![Disconnect](https://github.com/HarrisQs/DropDrip/blob/master/Picture/緊急事件.jpeg)
+
+		Picture.4 Emergency
 
 ## History
 
