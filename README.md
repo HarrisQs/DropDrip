@@ -58,4 +58,4 @@ The following pictures are some screen when this app is running.
 
 ## License
 
-Available under [the MIT license](https://mths.be/mit).
+Available under [the BSD-3-Clause license](https://opensource.org/licenses/BSD-3-Clause).
